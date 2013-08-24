@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     create_table :users, id: :uuid do |t|
       
       ## Extra attributes
-      #t.string :name
+      t.string :name
       t.string :avatar_url
       t.string :first_name
       t.string :last_name
