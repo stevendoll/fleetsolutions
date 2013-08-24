@@ -17,7 +17,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Oauth2
       t.string :provider
       t.string :uid
-      t.string :name
+      # t.string :name
 
       ## Database authenticatable
       t.string :email,              :null => false, :default => ""
