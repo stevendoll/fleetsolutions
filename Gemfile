@@ -17,7 +17,6 @@ gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'thin'
 gem 'twitter-bootstrap-rails', '2.2.6'
-gem 'rails_strap', path: 'vendor/rails_strap-1.0.3'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
@@ -25,6 +24,7 @@ group :development do
   gem 'quiet_assets'
 end
 group :development, :test do
+  gem 'rails_strap', path: 'vendor/rails_strap-1.0.3'
   gem 'therubyracer', :platform=>:ruby
   gem 'factory_girl_rails'
   gem 'rspec-rails'
