@@ -1,5 +1,5 @@
 PATH
-  remote: vendor/assets/gems/rails_strap-1.0.3
+  remote: vendor/rails_strap-1.0.3
   specs:
     rails_strap (1.0.3)
       flexslider (= 2.0.2)
