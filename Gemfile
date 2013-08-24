@@ -15,7 +15,6 @@ gem 'less-rails'
 gem 'pg'
 gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
-gem 'therubyracer', :platform=>:ruby
 gem 'thin'
 gem 'twitter-bootstrap-rails', '2.2.6'
 gem 'rails_strap', path: 'vendor/rails_strap-1.0.3'
@@ -26,6 +25,7 @@ group :development do
   gem 'quiet_assets'
 end
 group :development, :test do
+  gem 'therubyracer', :platform=>:ruby
   gem 'factory_girl_rails'
   gem 'rspec-rails'
 end
@@ -36,3 +36,7 @@ group :test do
   gem 'email_spec'
   gem 'launchy'
 end
+group :production do
+  gem 'rails_12factor'
+end
+
