@@ -18,7 +18,7 @@ gem 'simple_form', '>= 3.0.0.rc'
 gem 'therubyracer', :platform=>:ruby
 gem 'thin'
 gem 'twitter-bootstrap-rails', '2.2.6'
-gem 'rails_strap', path: 'vendor/gems/rails_strap-1.0.3'
+gem 'rails_strap', path: 'vendor/assets/gems/rails_strap-1.0.3'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
