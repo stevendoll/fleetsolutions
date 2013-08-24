@@ -1,35 +1,116 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Fleetsolutions" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Fleetsolutions" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <%= yield(:head) %>
-  </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,300italic' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+  <title>{rails}strap - <%= yield(:title) %></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <!--[if IE 7]>
+    <%= stylesheet_link_tag "font-awesome-ie7.min" %>
+  <![endif]-->
+  <!-- Fav and touch icons -->
+  <%= javascript_include_tag "rails_strap_modernizer"  %>
+  <%= csrf_meta_tags %>
+  <%=  yield(:head) %>
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
+  <link rel="shortcut icon" href="favicon.png">
+</head>
+<body class="<%= yield(:body_class) %>">
+<header>
+  <div class="container">
+    <div class="navbar">
+      <div class="navbar-inner"> <a class="brand" href="<%= root_path %>">  <!-- <img src="<%= asset_path("rails_strap_logo.png") %>" width="90" height="90" alt="optional logo"> --> <span class="logo_title">clear skies <strong>Fleet&nbsp;Solutions</strong></span> <span class="logo_subtitle">Removing the barriers to a green fleet</span> </a> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="nb_left pull-left"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></span>  <span class="nb_right pull-right">menu</span> </a>
+        <div class="nav-collapse collapse">
           <%= render 'layouts/navigation' %>
         </div>
-      </nav>
+      </div>
     </div>
-    <div id="main" role="main">
+    <div id="social_media_wrapper"> <a href="#facebook"><i class="icon icon-linkedin"></i></a> <a href="#twitter"><i class="icon icon-twitter"></i></a> <a href="#googleplus"><i class="icon icon-google-plus"></i></a> </div>
+    <div id="sign">
+      <% if user_signed_in? %>
+        <%= link_to edit_user_registration_path do %>
+          <i class="icon icon-user"></i>Account
+        <% end %>&nbsp;&nbsp;
+        <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+      <% else %>
+        <%= link_to users_path do %>
+          <i class="icon icon-user"></i>Register/Sign in
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</header>
+<%= yield(:post_header) %>
+<div id="main">
+  <div class="container">
+    <%= yield %>
+  </div>
+  <footer>
+    <section id="twitter_feed_wrapper">
       <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
+        <div class="row">
+          <div class="span1 twitter_feed_icon"><a href="#twitter"><i class="icon icon-twitter-sign"></i></a></div>
+          <div class="span11">
+            <blockquote>
+              <p>Wordle creates Typographic images from any txt or even your delicious bookmarks. Here is my untitled from Anonymous <a href="#">http://unhub.com/LIot</a></p>
+              &mdash; LeonART (@leonartgr) <a href="https://twitter.com/leonartgr/">January 25, 2013</a></blockquote>
           </div>
-          <footer>
-          </footer>
         </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
-  </body>
+      </div>
+    </section>
+    <section id="footer_teasers_wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="span4 footer_teaser">
+            <h3>About us</h3>
+            <p>Fugiat dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut fermentum mas justo sitters.</p>
+            <p><i class="icon-map-marker"></i> 3 Athens street</p>
+            <p><i class="icon-phone"></i> (+30) 265-9987</p>
+            <p><i class="icon-print"></i> (+30) 9854-7855</p>
+            <p><i class="icon-envelope"></i> hello@railsstraptheme.com</p>
+          </div>
+          <div class="span4 footer_teaser">
+            <h3>Latest News</h3>
+            <ul class="media-list">
+              <li class="media"> <a href="#" class="media-photo" style="background-image:url(<%= asset_path("portfolio/t5.jpg") %>)"></a> <a href="#"  class="media-date">19<span>FEB</span></a>
+                <h5 class="media-heading"><a href="#">Media heading, this is a title of a news...</a></h5>
+                <p>Fugiat dapibus, tellus ac cursus commodo, ut fermentum...</p>
+              </li>
+              <li class="media"> <a href="#" class="media-photo" style="background-image:url(<%= asset_path("portfolio/t4.jpg") %>)"></a> <a href="#"  class="media-date">18<span>FEB</span></a>
+                <h5 class="media-heading"><a href="#">Media heading, of a news item.</a></h5>
+                <p>Fugiat dapibus, tellus ac cursus commodo, condime ntum nibh, ut fermentum...</p>
+              </li>
+            </ul>
+          </div>
+          <div class="span4 footer_teaser" id="latest-flickr-images">
+            <h3>FlickrFeed</h3>
+            <p>All photos &copy; by <a href="http://www.dimitragiannouka.com" target="_blank">Dimitra Giannouka</a>.</p>
+            <ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="span6"> Copyright &copy;2013 all rights reserved </div>
+          <div class="span6 text-right">
+            Designed by <a href="http://www.leonart.gr">leonart</a>
+            & developed by <a href="http://wintersolutions.de">wintersolutions</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+</div>
+<%= javascript_include_tag "application" %>
+</body>
 </html>

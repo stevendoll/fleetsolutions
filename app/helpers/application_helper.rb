@@ -12,4 +12,8 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def is_active?(page_names, type = :action)
+    "active" if [*page_names].include? params[type]
+  end
+
 end
