@@ -25,7 +25,7 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap-datepicker-rails' #datepicker
 gem 'rails_strap', path: 'vendor/rails_strap-1.0.3'
 gem 'therubyracer', :platform=>:ruby
-#gem "font-awesome-rails"
+gem "font-awesome-rails"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
