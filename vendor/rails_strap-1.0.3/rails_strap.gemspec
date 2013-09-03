@@ -18,12 +18,19 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "twitter-bootstrap-rails", "2.2.6"
+  # spec.add_dependency "twitter-bootstrap-rails", "2.2.6"
 
-  spec.add_dependency "flexslider", "2.0.2"
-  spec.add_dependency "prettyphoto-rails", "0.2.0"
-  spec.add_dependency "jquery-rails", "~> 2.0"
-  spec.add_dependency "less-rails", "~> 2.2"
+  # spec.add_dependency "flexslider", "2.0.2"
+  # spec.add_dependency "prettyphoto-rails", "0.2.0"
+  # spec.add_dependency "jquery-rails", "~> 2.0"
+  # spec.add_dependency "less-rails", "~> 2.2"
+
+  spec.add_dependency "twitter-bootstrap-rails"
+  spec.add_dependency "flexslider"
+  spec.add_dependency "prettyphoto-rails"
+  spec.add_dependency "jquery-rails"
+  spec.add_dependency "less-rails"
+
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
