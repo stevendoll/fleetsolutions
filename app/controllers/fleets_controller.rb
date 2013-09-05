@@ -49,6 +49,7 @@ class FleetsController < ApplicationController
     @fleet.mileage = @fleet.vehicle_type.mileage
     @fleet.resale_value = @fleet.vehicle_type.resale_value
     @fleet.conversion_cost = @fleet.vehicle_type.conversion_cost
+    @fleet.percent_propane = 100.0
     @fleet.save
 
 

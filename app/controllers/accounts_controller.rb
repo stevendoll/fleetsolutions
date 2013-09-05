@@ -15,6 +15,11 @@ class AccountsController < ApplicationController
   # GET /accounts/new
   def new
     @account = Account.new
+    @account.fuel_royalties = 0.3
+    @account.turnkey_royalties = 0.1
+    @account.fuel_price = 2.75
+    @account.annual_management_charge = 6000.0
+    @account.conversion_margin = 0.2
   end
 
   # GET /accounts/1/edit
