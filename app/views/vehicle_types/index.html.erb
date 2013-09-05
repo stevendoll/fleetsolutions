@@ -1,0 +1,45 @@
+<h1>Listing vehicle_types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Miles</th>
+      <th>Lifetime miles</th>
+      <th>Mileage</th>
+      <th>Miles per year</th>
+      <th>Resale value</th>
+      <th>Conversion cost</th>
+      <th>Propane factor</th>
+      <th>Display order</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vehicle_types.each do |vehicle_type| %>
+      <tr>
+        <td><%= vehicle_type.name %></td>
+        <td><%= vehicle_type.year %></td>
+        <td><%= vehicle_type.miles %></td>
+        <td><%= vehicle_type.lifetime_miles %></td>
+        <td><%= vehicle_type.mileage %></td>
+        <td><%= vehicle_type.miles_per_year %></td>
+        <td><%= vehicle_type.resale_value %></td>
+        <td><%= vehicle_type.conversion_cost %></td>
+        <td><%= vehicle_type.propane_factor %></td>
+        <td><%= vehicle_type.display_order %></td>
+        <td><%= link_to 'Show', vehicle_type %></td>
+        <td><%= link_to 'Edit', edit_vehicle_type_path(vehicle_type) %></td>
+        <td><%= link_to 'Destroy', vehicle_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vehicle type', new_vehicle_type_path %>

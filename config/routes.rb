@@ -1,4 +1,15 @@
 Fleetsolutions::Application.routes.draw do
+
+
+  resources :accounts
+
+  resources :accounts do
+    resources :fleets
+    resources :stations
+  end
+
+  resources :vehicle_types
+
   root :to => "home#index"
 
   get "/about_us" => "home#about_us"

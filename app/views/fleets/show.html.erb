@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @fleet.name %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @fleet.quantity %>
+</p>
+
+<p>
+  <strong>Vehicle type:</strong>
+  <%= @fleet.vehicle_type_id %>
+</p>
+
+<p>
+  <strong>Miles:</strong>
+  <%= @fleet.miles %>
+</p>
+
+<p>
+  <strong>Lifetime miles:</strong>
+  <%= @fleet.lifetime_miles %>
+</p>
+
+<p>
+  <strong>Mileage:</strong>
+  <%= @fleet.mileage %>
+</p>
+
+<p>
+  <strong>Miles per year:</strong>
+  <%= @fleet.miles_per_year %>
+</p>
+
+<p>
+  <strong>Maintenance per mile:</strong>
+  <%= @fleet.maintenance_per_mile %>
+</p>
+
+<p>
+  <strong>Pays for fuel:</strong>
+  <%= @fleet.pays_for_fuel %>
+</p>
+
+<p>
+  <strong>Pays for maintenance:</strong>
+  <%= @fleet.pays_for_maintenance %>
+</p>
+
+<p>
+  <strong>Percent propane:</strong>
+  <%= @fleet.percent_propane %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @fleet.account_id %>
+</p>
+
+<%= link_to 'Edit', edit_fleet_path(@fleet) %> |
+<%= link_to 'Back', fleets_path %>

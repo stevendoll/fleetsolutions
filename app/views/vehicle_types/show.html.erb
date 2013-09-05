@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @vehicle_type.name %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @vehicle_type.year %>
+</p>
+
+<p>
+  <strong>Miles:</strong>
+  <%= @vehicle_type.miles %>
+</p>
+
+<p>
+  <strong>Lifetime miles:</strong>
+  <%= @vehicle_type.lifetime_miles %>
+</p>
+
+<p>
+  <strong>Mileage:</strong>
+  <%= @vehicle_type.mileage %>
+</p>
+
+<p>
+  <strong>Miles per year:</strong>
+  <%= @vehicle_type.miles_per_year %>
+</p>
+
+<p>
+  <strong>Resale value:</strong>
+  <%= @vehicle_type.resale_value %>
+</p>
+
+<p>
+  <strong>Conversion cost:</strong>
+  <%= @vehicle_type.conversion_cost %>
+</p>
+
+<p>
+  <strong>Propane factor:</strong>
+  <%= @vehicle_type.propane_factor %>
+</p>
+
+<p>
+  <strong>Display order:</strong>
+  <%= @vehicle_type.display_order %>
+</p>
+
+<%= link_to 'Edit', edit_vehicle_type_path(@vehicle_type) %> |
+<%= link_to 'Back', vehicle_types_path %>

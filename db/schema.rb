@@ -11,11 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822212003) do
+ActiveRecord::Schema.define(version: 20130905205623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "accounts", id: false, force: true do |t|
+    t.uuid     "id",                       null: false
+    t.string   "name"
+    t.text     "address_1"
+    t.text     "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.float    "fuel_royalties"
+    t.float    "turnkey_royalties"
+    t.float    "fuel_price"
+    t.float    "annual_management_charge"
+    t.float    "conversion_margin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fleets", id: false, force: true do |t|
+    t.uuid     "id",                   null: false
+    t.string   "name"
+    t.integer  "quantity"
+    t.uuid     "vehicle_type_id"
+    t.float    "miles"
+    t.float    "lifetime_miles"
+    t.float    "mileage"
+    t.float    "miles_per_year"
+    t.float    "maintenance_per_mile"
+    t.string   "pays_for_fuel"
+    t.string   "pays_for_maintenance"
+    t.float    "percent_propane"
+    t.float    "resale_value"
+    t.float    "conversion_cost"
+    t.uuid     "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", id: false, force: true do |t|
     t.uuid     "id",            null: false
@@ -29,6 +66,21 @@ ActiveRecord::Schema.define(version: 20130822212003) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "stations", id: false, force: true do |t|
+    t.uuid     "id",               null: false
+    t.string   "name"
+    t.text     "address_1"
+    t.text     "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.uuid     "account_id"
+    t.boolean  "attended"
+    t.float    "development_cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", id: false, force: true do |t|
     t.uuid     "id",                                             null: false
     t.string   "name"
@@ -38,7 +90,7 @@ ActiveRecord::Schema.define(version: 20130822212003) do
     t.string   "work_phone"
     t.string   "mobile_phone"
     t.string   "title"
-    t.uuid     "supervisor_id"
+    t.uuid     "account_id"
     t.string   "provider"
     t.string   "uid"
     t.string   "email",                             default: "", null: false
@@ -76,5 +128,21 @@ ActiveRecord::Schema.define(version: 20130822212003) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "vehicle_types", id: false, force: true do |t|
+    t.uuid     "id",              null: false
+    t.string   "name"
+    t.integer  "year"
+    t.float    "miles"
+    t.float    "lifetime_miles"
+    t.float    "mileage"
+    t.float    "miles_per_year"
+    t.float    "resale_value"
+    t.float    "conversion_cost"
+    t.float    "propane_factor"
+    t.float    "display_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

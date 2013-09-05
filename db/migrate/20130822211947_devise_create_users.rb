@@ -11,7 +11,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :work_phone
       t.string :mobile_phone
       t.string :title
-      t.uuid :supervisor_id
+
+      ## customer accounts
+      t.uuid :account_id
 
 
       ## Oauth2

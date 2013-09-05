@@ -1,0 +1,49 @@
+<h1>Listing fleets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Vehicle type</th>
+      <th>Miles</th>
+      <th>Lifetime miles</th>
+      <th>Mileage</th>
+      <th>Miles per year</th>
+      <th>Maintenance per mile</th>
+      <th>Pays for fuel</th>
+      <th>Pays for maintenance</th>
+      <th>Percent propane</th>
+      <th>Account</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fleets.each do |fleet| %>
+      <tr>
+        <td><%= fleet.name %></td>
+        <td><%= fleet.quantity %></td>
+        <td><%= fleet.vehicle_type_id %></td>
+        <td><%= fleet.miles %></td>
+        <td><%= fleet.lifetime_miles %></td>
+        <td><%= fleet.mileage %></td>
+        <td><%= fleet.miles_per_year %></td>
+        <td><%= fleet.maintenance_per_mile %></td>
+        <td><%= fleet.pays_for_fuel %></td>
+        <td><%= fleet.pays_for_maintenance %></td>
+        <td><%= fleet.percent_propane %></td>
+        <td><%= fleet.account_id %></td>
+        <td><%= link_to 'Show', fleet %></td>
+        <td><%= link_to 'Edit', edit_fleet_path(fleet) %></td>
+        <td><%= link_to 'Destroy', fleet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fleet', new_fleet_path %>

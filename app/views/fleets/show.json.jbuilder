@@ -1,0 +1,1 @@
+json.extract! @fleet, :name, :quantity, :vehicle_type_id, :miles, :lifetime_miles, :mileage, :miles_per_year, :maintenance_per_mile, :pays_for_fuel, :pays_for_maintenance, :percent_propane, :account_id, :created_at, :updated_at
