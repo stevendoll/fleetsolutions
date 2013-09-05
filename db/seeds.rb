@@ -19,11 +19,11 @@ puts 'user: ' << user.name
 user.add_role :admin
 user.skip_confirmation!
 user.save!
-user = User.find_or_create_by_email :name => ENV['ADMIN2_NAME'].dup, :email => ENV['ADMIN2_EMAIL'].dup, :password => ENV['ADMIN2_PASSWORD'].dup, :password_confirmation => ENV['ADMIN2_PASSWORD'].dup, :first_name => 'Tony', :last_name => 'Pavlo', :work_phone => '', :mobile_phone => '', :title => 'Founder'
-puts 'user: ' << user.name
-user.add_role :admin
-user.skip_confirmation!
-user.save!
+# user = User.find_or_create_by_email :name => ENV['ADMIN2_NAME'].dup, :email => ENV['ADMIN2_EMAIL'].dup, :password => ENV['ADMIN2_PASSWORD'].dup, :password_confirmation => ENV['ADMIN2_PASSWORD'].dup, :first_name => 'Tony', :last_name => 'Pavlo', :work_phone => '', :mobile_phone => '', :title => 'Founder'
+# puts 'user: ' << user.name
+# user.add_role :admin
+# user.skip_confirmation!
+# user.save!
 
 puts 'VEHICLE TYPES'
 vehicletype = VehicleType.find_or_create_by_name(:name => 'Taxi - Ford Crown Victoria 2003', :year => '2003', :miles => '120000', :lifetime_miles => '300000', :mileage => '15.5', :resale_value => '4125', :conversion_cost => '3500', :propane_factor => '0.85', :display_order => '1')
