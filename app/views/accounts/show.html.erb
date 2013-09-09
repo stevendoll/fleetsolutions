@@ -1,62 +1,29 @@
 <% content_for(:title) { "Account Dashboard" } %>
 
   <div class="hgroup">
-    <h1><%= @account.name %> Dashboard</h1>
-    <h2>Let's get started...</h2>
+    <h1><%= @account.name %> Savings Calculation</h1>
+    <h2>Find our how much you can make by switching to propane.</h2>
     <ul class="breadcrumb pull-right">
       <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
-      <li class="active">Vehicles</li>
+      <li class="active">Savings Calculator</li>
     </ul>
   </div>
 
+<% if @account.fleets.count > 0 %>
 
-   <table class="table table-condensed">
-    <thead>
-      <tr>
-      <th>Quantity</th>
-      <th>Vehicles</th>
-      <th>Miles</th>
-      <th>Lifetime miles</th>
-      <th>Mileage</th>
-      <th>Miles per year</th>
-      <th>Maintenance per mile</th>
-      <th>Pays for fuel</th>
-      <th>Pays for maintenance</th>
-      <th>Percent propane</th>
-      <th></th>
-      <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
 
-<% @account.fleets.each do |fleet| %>
-      <tr>
-        <td><%= fleet.quantity %> <%= @vehicles %></td>
-        <td><%= fleet.name %></td>
-        <td><%= fleet.miles %></td>
-        <td><%= fleet.lifetime_miles %></td>
-        <td><%= fleet.mileage %></td>
-        <td><%= fleet.miles_per_year %></td>
-        <td><%= fleet.maintenance_per_mile %></td>
-        <td><%= fleet.pays_for_fuel %></td>
-        <td><%= fleet.pays_for_maintenance %></td>
-        <td><%= fleet.percent_propane %></td>
-        <td><%= link_to 'Edit', [fleet.account, fleet] %></td>
-        <td><%= link_to 'Destroy', [fleet.account, fleet], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
-      </tr>
-<% end %>
-</table>
+
 
 <div class="row pricing_wrapper">
   <div class="span4">
     <div class="pricing_plan">
       <h3>Test<strong>Drive</strong> <small>Try it out yourself</small></h3>
-      <div class="the_price"><span>$</span>1,000<small></small></div>
+      <div class="the_price">Unlimited<small><br />Fuel for 30 days</small></div>
       <div class="the_offerings">
         <p> <strong>2</strong> Vehicles </p>
         <p> <strong>30</strong> Days </p>
-        <p> <strong>Unlimited</strong> Fuel </p>
+        <p> <strong>$1,000</strong> </p>
+        <p> &nbsp; </p>
       </div>
       <a href="#" class="btn btn-primary btn-large">Get it Now!</a> </div>
   </div>
@@ -89,7 +56,47 @@
 </div>
 
 
+<h2>Fleet</h2>
+
+   <table class="table table-condensed">
+    <thead>
+      <tr>
+      <th>Quantity</th>
+      <th>Vehicles</th>
+      <th>Mileage</th>
+      <th>Miles per year</th>
+      <th>Maintenance per mile</th>
+      <th>Pays for fuel</th>
+      <th>Pays for maintenance</th>
+      <th>Percent propane</th>
+      <th></th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+
+<% @account.fleets.each do |fleet| %>
+      <tr>
+        <td><%= fleet.quantity %> <%= @vehicles %></td>
+        <td><%= fleet.name %></td>
+        <td><%= fleet.mileage %></td>
+        <td><%= fleet.miles_per_year %></td>
+        <td><%= fleet.maintenance_per_mile %></td>
+        <td><%= fleet.pays_for_fuel %></td>
+        <td><%= fleet.pays_for_maintenance %></td>
+        <td><%= fleet.percent_propane %></td>
+        <td><%= link_to 'Edit', [fleet.account, fleet] %></td>
+        <td><%= link_to 'Destroy', [fleet.account, fleet], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
+      </tr>
+<% end %>
+</table>
+
+<h2>Add another vehicle group:</h2>
+<% else %>
 <h2>Add a vehicle group:</h2>
+<% end %>
+
 <%= simple_form_for([@account, @account.fleets.build]) do |f| %>
 <%= f.error_notification %>
   <p>
@@ -98,21 +105,14 @@
     <%= f.input :miles_per_year %>
     <%= f.input :pays_for_fuel, as: :radio_buttons, collection: [ "Company", "Driver"] %>
     <%= f.input :pays_for_maintenance, as: :radio_buttons, collection: [ "Company", "Driver"] %>
-    <%= f.input :percent_propane %>
   <p>
     <%= f.submit %>
   </p>
 <% end %>
 
-<h2>Team</h2>
-<% @account.users.each do |user| %>
-  <p>
-    <%= user.first_name %> <%= user.last_name %>  <%= user.email %>
-  </p>
- <% end %>
 
  <p>
-  <%= link_to 'Edit', edit_account_path(@account) %>
+  <%= link_to 'Edit Account', edit_account_path(@account) %>
 </p>
 
 

@@ -1,8 +1,5 @@
 Fleetsolutions::Application.routes.draw do
 
-
-  resources :accounts
-
   resources :accounts do
     resources :fleets
     resources :stations

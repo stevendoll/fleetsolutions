@@ -8,7 +8,7 @@
             <div class="container">
               <div class="carousel-caption">
                 <h1><strong>fleet opportunities</strong> <br /> that improve the environment <br />and <strong>save money</strong></h1>
-                <p class="lead inverse">many opportunities <strong>look great on paper</strong>. we <strong><a href="https://wrapbootstrap.com/theme/restart-clean-minimal-business-WB0NPLR53">solve</a></strong> the real-world problems <br />that help <strong> turn ideas into action</strong></p>
+                <p class="lead inverse">many opportunities <strong>look great on paper</strong>. we <strong><%= link_to "solve", new_account_path %></strong> the real-world problems <br />that help <strong> turn ideas into action</strong></p>
               </div>
             </div>
           </li>
@@ -44,7 +44,7 @@
 <section class="call_to_action">
   <h3>boost your bottom line</h3>
   <h4>and make the earth a little happier</h4>
-  <a class="btn btn-primary btn-large" href="https://wrapbootstrap.com/theme/rails-strap-ruby-ready-theme-WB00952P7">Calculate your savings!</a>
+  <%= link_to 'Calculate your savings!', new_account_path, :class => 'btn btn-primary btn-large' %>
 </section>
 <section id="features_teasers_wrapper">
   <div class="row">
@@ -65,64 +65,6 @@
     <div class="span4 feature_teaser"><img alt="responsive" src="<%= asset_path("rubyonrails.png") %>">
       <h3>Packed as a Ruby gem</h3>
       <p>{rails}<strong>strap</strong> comes packed as a gem file to help the Ruby on Rails developer save precious time. The plain HTML version <strong>is also included</strong>. Congue fermentum sed at lorem fermentum sed.</p>
-    </div>
-  </div>
-</section>
-<section id="portfolio_teasers_wrapper">
-  <h2 class="section_header">Recent Work or Projects from Portfolio</h2>
-
-  <div class="portfolio_strict row">
-    <div class="portfolio_item span3">
-      <div class="portfolio_photo" style="background-image:url(<%= asset_path("portfolio/a1.jpg") %>)">
-        <a href=""> <i class="icon-2x icon-external-link"></i>
-
-          <p>Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut
-            fermentum...</p>
-        </a></div>
-      <div class="portfolio_description">
-        <h3><a href="">Lorem Ipsum</a></h3>
-
-        <p>artists</p>
-      </div>
-    </div>
-    <div class="portfolio_item span3">
-      <div class="portfolio_photo" style="background-image:url(<%= asset_path("portfolio/t5.jpg") %>)">
-        <a href=""> <i class="icon-2x icon-external-link"></i>
-
-          <p>Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut
-            fermentum...</p>
-        </a></div>
-      <div class="portfolio_description">
-        <h3><a href="">Lorem Ipsum</a></h3>
-
-        <p>travel</p>
-      </div>
-    </div>
-    <div class="portfolio_item span3">
-      <div class="portfolio_photo" style="background-image:url(<%= asset_path("portfolio/p3.jpg") %>)">
-        <a href=""> <i class="icon-2x icon-external-link"></i>
-
-          <p>Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut
-            fermentum...</p>
-        </a></div>
-      <div class="portfolio_description">
-        <h3><a href="">Lorem Ipsum</a></h3>
-
-        <p>people</p>
-      </div>
-    </div>
-    <div class="portfolio_item span3">
-      <div class="portfolio_photo" style="background-image:url(<%= asset_path("portfolio/t4.jpg") %>)">
-        <a href=""> <i class="icon-2x icon-external-link"></i>
-
-          <p>Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut
-            fermentum...</p>
-        </a></div>
-      <div class="portfolio_description">
-        <h3><a href="">Lorem Ipsum</a></h3>
-
-        <p>poetic</p>
-      </div>
     </div>
   </div>
 </section>

@@ -24,7 +24,7 @@ class Account < ActiveRecord::Base
     @gasoline ||= self.fleets.inject(0) { |sum, a| sum += a.quantity * a.miles_per_year / a.mileage }
     @proposed_gasoline ||= self.fleets.inject(0) { |sum, a| sum += a.quantity * a.miles_per_year * (1- a.percent_propane/100) / a.mileage }
     @propane ||= self.fleets.inject(0) { |sum, a| sum += a.quantity * a.miles_per_year * a.percent_propane/100 / a.mileage / a.vehicle_type.propane_factor }
-    @savings ||= (@gasoline - @proposed_gasoline) * 3.65 - @propane * 2.25
+    @savings ||= (@gasoline - @proposed_gasoline) * 3.65 - @propane * 2.65
   end
 
   def proposed_royalties
