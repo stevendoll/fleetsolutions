@@ -9,6 +9,9 @@ Fleetsolutions::Application.routes.draw do
 
   root :to => "home#index"
 
+  get "/calculator" => "home#calculator"
+
+
   get "/about_us" => "home#about_us"
   get "/blog" => "home#blog"
   get "/contact" => "home#contact"
