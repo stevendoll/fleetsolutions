@@ -1,7 +1,11 @@
 <% content_for(:title) { "Account Dashboard" } %>
 
   <div class="hgroup">
+    <% if @account.fleets.count > 0 %>
     <h1><%= @account.name %> Fleet Savings</h1>
+    <% else %>
+    <h1>Enter some vehicles</h1>
+    <% end %>
     <h2>Find our how much you can make by switching to propane.</h2>
     <ul class="breadcrumb pull-right">
       <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
@@ -109,8 +113,6 @@
 </ul>
 
 <% else %>
-
-<h2>Add a vehicle group:</h2>
 
   <%= simple_form_for([@account, @account.fleets.build(:percent_propane => 100.0, :pays_for_fuel => 'Company', :pays_for_maintenance => 'Company')]) do |f| %>
   <%= f.error_notification %>
