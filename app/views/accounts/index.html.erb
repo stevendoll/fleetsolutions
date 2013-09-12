@@ -1,18 +1,21 @@
-<h1>Listing accounts</h1>
+<% content_for(:title) { "Accounts" } %>
 
-<table>
+  <div class="hgroup">
+    <h1>Accounts</h1>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li class="active">Accounts</li>
+    </ul>
+  </div>
+
+
+<table class="table table-condensed">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Address 1</th>
-      <th>Address 2</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Fuel royalties</th>
-      <th>Fuel price</th>
-      <th>Annual management charge</th>
-      <th>Conversion margin</th>
+      <th>Vehicles</th>
+      <th>Turnkey</th>
+      <th>Pro</th>
       <th></th>
       <th></th>
       <th></th>
@@ -23,18 +26,12 @@
     <% @accounts.each do |account| %>
       <tr>
         <td><%= account.name %></td>
-        <td><%= account.address_1 %></td>
-        <td><%= account.address_2 %></td>
-        <td><%= account.city %></td>
-        <td><%= account.state %></td>
-        <td><%= account.zip %></td>
-        <td><%= account.fuel_royalties %></td>
-        <td><%= account.fuel_price %></td>
-        <td><%= account.annual_management_charge %></td>
-        <td><%= account.conversion_margin %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= account.total_vehicles %></td>
+        <td>$<%= number_with_precision(account.proposed_turnkey_royalties + account.proposed_company_turnkey_savings, :precision => 3, :significant => true, :delimiter => ",") %></td>
+        <td>$<%= number_with_precision(account.proposed_royalties + account.proposed_company_savings, :precision => 3, :significant => true, :delimiter => ",") %></td>
+        <td><%= link_to 'Show', account, :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Edit', edit_account_path(account), :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
       </tr>
     <% end %>
   </tbody>

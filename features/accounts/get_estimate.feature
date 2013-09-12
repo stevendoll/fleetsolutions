@@ -5,8 +5,7 @@ Feature: Get estimate
 
     Scenario: User gets estimate successfully
       Given I am not logged in
-      When I go to the estimate form
-        And I enter valid vehicle data
+      When I enter valid vehicle data
       Then I should see my estimate
 
 

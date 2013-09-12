@@ -18,16 +18,19 @@ ActiveRecord::Schema.define(version: 20130905205623) do
   enable_extension "uuid-ossp"
 
   create_table "accounts", id: false, force: true do |t|
-    t.uuid     "id",                       null: false
+    t.uuid     "id",                        null: false
     t.string   "name"
     t.text     "address_1"
     t.text     "address_2"
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.float    "fuel_royalties"
-    t.float    "turnkey_royalties"
-    t.float    "fuel_price"
+    t.float    "propane_royalties"
+    t.float    "propane_turnkey_royalties"
+    t.float    "propane_price"
+    t.float    "propane_cost"
+    t.float    "propane_turnkey_cost"
+    t.float    "gasoline_price"
     t.float    "annual_management_charge"
     t.float    "conversion_margin"
     t.datetime "created_at"
@@ -47,6 +50,7 @@ ActiveRecord::Schema.define(version: 20130905205623) do
     t.string   "pays_for_fuel"
     t.string   "pays_for_maintenance"
     t.float    "percent_propane"
+    t.float    "propane_factor"
     t.float    "resale_value"
     t.float    "conversion_cost"
     t.uuid     "account_id"

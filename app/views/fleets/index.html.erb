@@ -1,11 +1,19 @@
-<h1>Listing fleets</h1>
+<% content_for(:title) { "Vehicle Fleet" } %>
 
-<table>
+  <div class="hgroup">
+    <h1>Fleet</h1>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li class="active">Fleet</li>
+    </ul>
+  </div>
+
+
+<table class="table table-condensed">
   <thead>
     <tr>
-      <th>Name</th>
       <th>Quantity</th>
-      <th>Vehicle type</th>
+      <th>Name</th>
       <th>Miles</th>
       <th>Lifetime miles</th>
       <th>Mileage</th>
@@ -14,7 +22,6 @@
       <th>Pays for fuel</th>
       <th>Pays for maintenance</th>
       <th>Percent propane</th>
-      <th>Account</th>
       <th></th>
       <th></th>
       <th></th>
@@ -24,9 +31,8 @@
   <tbody>
     <% @fleets.each do |fleet| %>
       <tr>
-        <td><%= fleet.name %></td>
         <td><%= fleet.quantity %></td>
-        <td><%= fleet.vehicle_type_id %></td>
+        <td><%= fleet.name %></td>
         <td><%= fleet.miles %></td>
         <td><%= fleet.lifetime_miles %></td>
         <td><%= fleet.mileage %></td>
@@ -35,15 +41,15 @@
         <td><%= fleet.pays_for_fuel %></td>
         <td><%= fleet.pays_for_maintenance %></td>
         <td><%= fleet.percent_propane %></td>
-        <td><%= fleet.account_id %></td>
-        <td><%= link_to 'Show', fleet %></td>
-        <td><%= link_to 'Edit', edit_fleet_path(fleet) %></td>
-        <td><%= link_to 'Destroy', fleet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [fleet.account, fleet], :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Edit', edit_account_fleet_path(fleet.account, fleet), :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Destroy', [fleet.account, fleet], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+ 
+<%= link_to 'New Vehicle Group', new_account_fleet_path %> 
 
-<%= link_to 'New Fleet', new_fleet_path %>

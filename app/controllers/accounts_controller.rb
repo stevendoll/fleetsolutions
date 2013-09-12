@@ -34,8 +34,11 @@ class AccountsController < ApplicationController
     @account.fuel_royalties = 0.3
     @account.turnkey_royalties = 0.1
     @account.fuel_price = 2.75
+    @account.fuel_cost = 2.65
+    @account.turnkey_fuel_cost = 2.45
+    @account.conversion_margin = 0.5
+    @account.gasoline_price = 3.65
     @account.annual_management_charge = 6000.0
-    @account.conversion_margin = 0.2
 
     respond_to do |format|
       if @account.save
@@ -53,11 +56,14 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
 
-    @account.fuel_royalties = 0.3
-    @account.turnkey_royalties = 0.1
-    @account.fuel_price = 2.75
+    @account.propane_royalties = 0.3
+    @account.propane_turnkey_royalties = 0.1
+    @account.propane_price = 2.75
+    @account.propane_cost = 2.45
+    @account.propane_turnkey_cost = 2.65
+    @account.conversion_margin = 0.5
+    @account.gasoline_price = 3.65
     @account.annual_management_charge = 6000.0
-    @account.conversion_margin = 0.2
 
 
     respond_to do |format|
@@ -103,6 +109,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:name, :address_1, :address_2, :city, :state, :zip, :fuel_royalties, :turnkey_royalties, :fuel_price, :annual_management_charge, :conversion_margin)
+      params.require(:account).permit(:name, :address_1, :address_2, :city, :state, :zip, :propane_royalties, :propane_turnkey_royalties, :propane_price, :propane_cost, :propane_turnkey_cost, :gasoline_cost, :annual_management_charge, :conversion_margin)
     end
 end

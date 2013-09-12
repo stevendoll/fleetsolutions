@@ -1,19 +1,14 @@
-<%= simple_form_for(@fleet) do |f| %>
+<%= simple_form_for([@fleet.account, @fleet]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
+    <%= f.association :vehicle_type %>
     <%= f.input :quantity %>
-    <%= f.input :vehicle_type_id %>
-    <%= f.input :miles %>
-    <%= f.input :lifetime_miles %>
-    <%= f.input :mileage %>
     <%= f.input :miles_per_year %>
-    <%= f.input :maintenance_per_mile %>
-    <%= f.input :pays_for_fuel %>
-    <%= f.input :pays_for_maintenance %>
+    <%= f.input :name, label: 'Description' %>
+    <%= f.input :pays_for_fuel, as: :radio_buttons, collection: [ "Company", "Driver"], selected: "Company" %>
+    <%= f.input :pays_for_maintenance, as: :radio_buttons, collection: [ "Company", "Driver"] %>
     <%= f.input :percent_propane %>
-    <%= f.input :account_id %>
   </div>
 
   <div class="form-actions">

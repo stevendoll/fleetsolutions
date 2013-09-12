@@ -1,5 +1,5 @@
 class CreateAccounts < ActiveRecord::Migration
-  def change
+  def up
     create_table :accounts, id: :uuid do |t|
       t.string :name
       t.text :address_1
@@ -7,13 +7,19 @@ class CreateAccounts < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :zip
-      t.float :fuel_royalties
-      t.float :turnkey_royalties
-      t.float :fuel_price
+      t.float :propane_royalties
+      t.float :propane_turnkey_royalties
+      t.float :propane_price
+      t.float :propane_cost
+      t.float :propane_turnkey_cost
+      t.float :gasoline_price
       t.float :annual_management_charge
       t.float :conversion_margin
 
       t.timestamps
     end
+  end
+  def down
+    drop_table :accounts
   end
 end

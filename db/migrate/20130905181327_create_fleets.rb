@@ -12,6 +12,7 @@ class CreateFleets < ActiveRecord::Migration
       t.string :pays_for_fuel
       t.string :pays_for_maintenance
       t.float :percent_propane
+      t.float :propane_factor
       t.float :resale_value
       t.float :conversion_cost
       t.uuid :account_id

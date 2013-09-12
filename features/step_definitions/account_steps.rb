@@ -28,7 +28,7 @@ def new_account
   #delete_account
   visit '/accounts/new'
   fill_in "Name", :with => @visitor_account[:name]
-  click_button "Submit"
+  click_button "Create Account"
   #find_account
 end
 

@@ -1,5 +1,15 @@
-<h1>New fleet</h1>
+<% content_for(:title) { "New Vehicle Group" } %>
+
+  <div class="hgroup">
+    <h1>New Vehicle Group</h1>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li><a href="<%= account_fleets_path(@fleet.account) %>">Fleet</a> <span class="divider">/</span></li>
+      <li class="active">New Vehicle Group</li>
+    </ul>
+  </div>
+
 
 <%= render 'form' %>
 
-<%= link_to 'Back', fleets_path %>
+<%= link_to 'Back', account_fleets_path(@fleet.account)%>
