@@ -1,0 +1,37 @@
+<% content_for(:title) {"Blog"} %>
+
+<section id="blog">
+  <div class="hgroup">
+    <h1>Clear Skies Blog</h1>
+    <h2>There's a lot going on, and we're excited.</h2>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li class="active">Blog</li>
+    </ul>
+  </div>
+  <div class="row">
+    <div id="leftcol" class="span8">
+      <% @posts.each do |post| %>
+      <article class="post">
+        <div class="post_header">
+          <h3 class="post_title"><%= link_to post.title, post %></h3>
+          <div class="post_sub"><i class="icon-time"></i> <%= post.published_on %>
+            <%= link_to(post_path(post, :anchor => "post_comments")) do %>
+                <i class="icon-comments-alt"></i> <%= post.comments.count %> comments
+            <% end %>
+          </div>
+        </div>
+        <div class="post_content">
+          <figure></figure>
+          <p><%= post.teaser.html_safe %></p>
+          <%= link_to 'Read More', post, :class => 'btn btn-primary' %> <%= link_to 'Edit', edit_post_path(post) %> <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </article>
+      <% end %>
+    </div>
+    <div id="sidebar" class="span4">
+      <%= link_to 'New Post', new_post_path %>  
+    </div>
+  </div>
+</section>
+

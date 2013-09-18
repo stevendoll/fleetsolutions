@@ -3,12 +3,11 @@ rails generate scaffold Fleet name:string quantity:integer vehicle_type_id:uuid 
 rails generate scaffold Account name:string address_1:text address_2:text city:string state:string zip:string
 rails generate scaffold Station name:string address_1:text address_2:text city:string state:string zip:string account_id:uuid attended:boolean development_cost:float
 
-Account
-fuel royalties per gallon
+rails generate scaffold EquipmentType name:string year:integer mileage:float miles_per_year:float resale_value:float conversion_cost:float display_order:float
+rails generate scaffold Equipment name:string quantity:integer equipment_type_id:uuid mileage:float miles_per_year:float maintenance_per_mile:float pays_for_fuel:string pays_for_maintenance:string resale_value:float percent_propane:float account_id:uuid
 
-
-vehicle
-conversion charge per vehicle
+rails generate scaffold Post title:string author_id:uuid published_on:date teaser:text body:text 
+rails generate scaffold Comment commenter:string post_id:uuid email:string published_on:date body:text 
 
 
 

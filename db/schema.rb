@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130905205623) do
+ActiveRecord::Schema.define(version: 20130916174843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20130905205623) do
     t.datetime "updated_at"
   end
 
+  create_table "comments", id: false, force: true do |t|
+    t.uuid     "id",           null: false
+    t.string   "commenter"
+    t.uuid     "post_id"
+    t.string   "email"
+    t.date     "published_on"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "fleets", id: false, force: true do |t|
     t.uuid     "id",                   null: false
     t.string   "name"
@@ -54,6 +65,17 @@ ActiveRecord::Schema.define(version: 20130905205623) do
     t.float    "resale_value"
     t.float    "conversion_cost"
     t.uuid     "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", id: false, force: true do |t|
+    t.uuid     "id",           null: false
+    t.string   "title"
+    t.uuid     "author_id"
+    t.date     "published_on"
+    t.text     "teaser"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -26,7 +26,7 @@
 <header>
   <div class="container">
     <div class="navbar">
-      <div class="navbar-inner"> <a class="brand" href="<%= root_path %>">  <img src="<%= asset_path("logo.png") %>" width="90" height="90" alt="optional logo"> <span class="logo_title"><strong>Clear</strong>{skies}<br /></span> <span class="logo_subtitle">Fleet Solutions</span> </a> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="nb_left pull-left"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></span>  <span class="nb_right pull-right">menu</span> </a>
+      <div class="navbar-inner"> <a class="brand" href="<%= root_path %>">  <img src="<%= asset_path("plum.png") %>" width="90" height="90" alt="optional logo"> <span class="logo_title"><strong>Plum</strong>{fleet}<br /></span> <span class="logo_subtitle">Fleet Solutions for the rest of us</span> </a> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="nb_left pull-left"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></span>  <span class="nb_right pull-right">menu</span> </a>
         <div class="nav-collapse collapse">
           <%= render 'layouts/navigation' %>
         </div>
@@ -67,20 +67,10 @@
           </div>
           <div class="span4 footer_teaser">
             <h3>Latest News</h3>
-            <ul class="media-list">
-              <li class="media"> <a href="#" class="media-photo" style="background-image:url(<%= asset_path("portfolio/t5.jpg") %>)"></a> <a href="#"  class="media-date">19<span>FEB</span></a>
-                <h5 class="media-heading"><a href="#">Media heading, this is a title of a news...</a></h5>
-                <p>Fugiat dapibus, tellus ac cursus commodo, ut fermentum...</p>
-              </li>
-              <li class="media"> <a href="#" class="media-photo" style="background-image:url(<%= asset_path("portfolio/t4.jpg") %>)"></a> <a href="#"  class="media-date">18<span>FEB</span></a>
-                <h5 class="media-heading"><a href="#">Media heading, of a news item.</a></h5>
-                <p>Fugiat dapibus, tellus ac cursus commodo, condime ntum nibh, ut fermentum...</p>
-              </li>
-            </ul>
+            <%= render 'posts/latest' %>
           </div>
           <div class="span4 footer_teaser" id="latest-flickr-images">
             <h3>FlickrFeed</h3>
-            <p>All photos &copy; by <a href="http://www.dimitragiannouka.com" target="_blank">Dimitra Giannouka</a>.</p>
             <ul>
             </ul>
           </div>
@@ -92,7 +82,7 @@
         <div class="row">
           <div class="span6"> Copyright &copy;2013 all rights reserved </div>
           <div class="span6 text-right">
-            Website by <a href="http://wintersolutions.de">wintersolutions</a> with Ruby on Rails
+            Website by <a href="http://kichocheo.com">Kichocheo</a> with Ruby on Rails
           </div>
         </div>
       </div>
