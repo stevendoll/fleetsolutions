@@ -1,6 +1,8 @@
 <% @posts = Post.all %>
 <% @posts.each do |post| %>
-  <li class="media"><%= link_to post.published_on, post, :class => 'media-date' %>
+  <li class="media"><%= link_to post, :class => 'media-date' do %>
+    <%= post.published_on.strftime("%e") %><span><%= post.published_on.strftime("%b").upcase %></span>
+    <% end %>
     <h5 class="media-heading"><%= link_to post.title, post %></h5>
     <p><%= post.teaser %></p>
   </li>

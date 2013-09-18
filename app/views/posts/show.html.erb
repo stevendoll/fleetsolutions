@@ -6,7 +6,7 @@
     <h2><i class="icon-time"></i> <%= @post.published_on %> <a href="#post_comments"><i class="icon-comments-alt"></i> <%= @post.comments.count > 0 ? @post.comments.count : 'Comment?' %></a></h2>
     <ul class="breadcrumb pull-right">
       <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
-      <li><a href="<%= blog_path %>">Blog</a></li>
+      <li><a href="<%= post_path %>">Blog</a></li>
     </ul>
   </div>
   <div class="row">
