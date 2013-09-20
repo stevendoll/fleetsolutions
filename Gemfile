@@ -27,6 +27,7 @@ gem 'rails_strap', path: 'vendor/rails_strap-1.0.3'
 gem 'therubyracer', :platform=>:ruby
 gem "font-awesome-rails"
 gem 'attribute_normalizer'
+gem 'bootstrap-datepicker-rails' #datepicker
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]

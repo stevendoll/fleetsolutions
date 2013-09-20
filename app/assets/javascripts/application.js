@@ -15,6 +15,7 @@
 //= require_tree .
 //= require_self
 //= require rails_strap
+//= require bootstrap-datepicker
 
 $(document).ready(function () {
 //Flickr feed snippet by css-tricks.com
