@@ -1,6 +1,5 @@
 class CreateEquipment < ActiveRecord::Migration
   def change
-    drop_table :equipment
     create_table :equipment, id: :uuid do |t|
       t.string :name
       t.integer :quantity
