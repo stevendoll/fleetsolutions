@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916174843) do
+ActiveRecord::Schema.define(version: 20130921005152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,32 @@ ActiveRecord::Schema.define(version: 20130916174843) do
     t.string   "email"
     t.date     "published_on"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "equipment", id: false, force: true do |t|
+    t.uuid     "id",                null: false
+    t.string   "name"
+    t.integer  "quantity"
+    t.uuid     "equipment_type_id"
+    t.float    "fuel_per_hour"
+    t.float    "hours_per_year"
+    t.float    "conversion_cost"
+    t.float    "percent_propane"
+    t.float    "propane_factor"
+    t.uuid     "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "equipment_types", id: false, force: true do |t|
+    t.uuid     "id",              null: false
+    t.string   "name"
+    t.float    "fuel_per_hour"
+    t.float    "conversion_cost"
+    t.float    "propane_factor"
+    t.float    "display_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

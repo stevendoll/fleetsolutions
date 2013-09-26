@@ -1,0 +1,15 @@
+<%= simple_form_for(@equipment_type) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :fuel_per_hour %>
+    <%= f.input :conversion_cost %>
+    <%= f.input :propane_factor %>
+    <%= f.input :display_order %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

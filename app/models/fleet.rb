@@ -64,6 +64,20 @@ class Fleet < ActiveRecord::Base
     @proposed_company_propane ||= proposed_company_propane_equivalent_gal / propane_factor
   end
 
+  def savings
+    @savings ||= (gasoline_gal - proposed_gasoline_gal) * self.account.gasoline_price - proposed_propane_gal * self.account.propane_cost
+  end
+  def company_savings
+    @company_savings ||= (company_gasoline_gal - proposed_company_gasoline_gal) * self.account.gasoline_price - proposed_company_propane_gal * self.account.propane_cost
+  end
+  def driver_savings
+    @driver_savings ||= (driver_gasoline_gal - proposed_driver_gasoline_gal) * self.account.gasoline_price - proposed_driver_propane_gal * self.account.propane_cost
+  end
+
+  def simple_payback
+    @simple_payback ||= ( savings > 0 ? quantity * conversion_cost * (1 + self.account.conversion_margin) / savings : 0 )
+  end
+
 
 
 end

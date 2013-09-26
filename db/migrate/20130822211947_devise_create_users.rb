@@ -1,5 +1,5 @@
 class DeviseCreateUsers < ActiveRecord::Migration
-  def up
+  def change
     enable_extension 'uuid-ossp'
     create_table :users, id: :uuid do |t|
       
@@ -73,8 +73,5 @@ class DeviseCreateUsers < ActiveRecord::Migration
     # add_index :users, :confirmation_token,   :unique => true
     # add_index :users, :unlock_token,         :unique => true
     # add_index :users, :authentication_token, :unique => true
-  end
-  def down
-    drop_table :users
   end
 end

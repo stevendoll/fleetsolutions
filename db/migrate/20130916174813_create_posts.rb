@@ -1,5 +1,5 @@
 class CreatePosts < ActiveRecord::Migration
-  def up
+  def change
     create_table :posts, id: :uuid do |t|
       t.string :title
       t.uuid :author_id
@@ -9,8 +9,5 @@ class CreatePosts < ActiveRecord::Migration
 
       t.timestamps
     end
-  end
-  def down
-    drop_table :posts
   end
 end

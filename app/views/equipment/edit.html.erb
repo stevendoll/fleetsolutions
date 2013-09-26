@@ -1,0 +1,16 @@
+<% content_for(:title) { "Edit Equipment" } %>
+
+  <div class="hgroup">
+    <h1>Edit Equipment</h1>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li><a href="<%= account_equipment_index_path(@equipment.account) %>">Equipment</a> <span class="divider">/</span></li>
+      <li class="active">Edit Equipment</li>
+    </ul>
+  </div>
+
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@equipment.account, @equipment] %> |
+<%= link_to 'Back', @equipment.account %>

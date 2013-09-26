@@ -1,10 +1,10 @@
 class Account < ActiveRecord::Base
   has_many :users
   has_many :fleets
+  has_many :equipment
   has_many :stations
 
   validates_presence_of :name
-
 
   def total_vehicles
     @vehicles ||= self.fleets.inject(0) { |sum, a| sum += a.quantity }

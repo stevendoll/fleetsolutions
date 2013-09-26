@@ -19,7 +19,7 @@
   <div class="span4">
     <div class="pricing_plan">
       <h3>Test<strong>Drive</strong> <small>Try it out yourself</small></h3>
-      <div class="the_price">Unlimited<small><br />Fuel for 30 days</small></div>
+      <div class="the_price"><span></span>Unlimited<br /><small>Fuel for 30 days</small></div>
       <div class="the_offerings">
         <p> <strong>2</strong> Vehicles </p>
         <p> <strong>30</strong> Days </p>
@@ -32,7 +32,7 @@
     <div class="pricing_plan special">
       <h3>Turn<strong>Key</strong> <small>No upfront cost!</small></h3>
       <div class="the_price">
-        <span>$</span><%= number_with_precision(@account.proposed_turnkey_royalties + @account.proposed_company_turnkey_savings, :precision => 3, :significant => true, :delimiter => ",") %><small> <%= @account.proposed_royalties == 0 ? 'Savings per year!' : @account.proposed_company_savings == 0 ? 'Royalties per year!' : 'Savings and Royalties!' %></small>
+        <span>$</span><%= number_with_precision(@account.proposed_turnkey_royalties + @account.proposed_company_turnkey_savings, :precision => 3, :significant => true, :delimiter => ",") %><br /><small> <%= @account.proposed_royalties == 0 ? 'Savings per year!' : @account.proposed_company_savings == 0 ? 'Royalties per year!' : 'Savings and Royalties!' %></small>
       </div>
       <div class="the_offerings">
         <p> <strong><%= @account.total_vehicles %></strong> Vehicles </p>
@@ -40,24 +40,23 @@
         <% if @account.proposed_driver_savings > 0 %><p> <strong>$<%= number_with_precision(@account.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></strong> Driver savings per year </p><% end %>
         <p> <strong>Leave the work to us</strong></p>
       </div>
-      <a href="#" class="btn btn-primary btn-large">Get it Now!</a> </div>
+      <a href="#" class="btn btn-primary btn-large">Tell me more!</a> </div>
   </div>
   <div class="span4">
     <div class="pricing_plan">
       <h3>Pro<strong>Plan</strong> <small>Maximize your savings</small></h3>
-      <div class="the_price"><span>$</span><%= number_with_precision(@account.proposed_royalties + @account.proposed_company_savings, :precision => 3, :significant => true, :delimiter => ",") %><small> <%= @account.proposed_royalties == 0 ? 'Savings per year!' : @account.proposed_company_savings == 0 ? 'Royalties per year!' : 'Savings and Royalties!' %></small></div>
+      <div class="the_price"><span>$</span><%= number_with_precision(@account.proposed_royalties + @account.proposed_company_savings, :precision => 3, :significant => true, :delimiter => ",") %><br /><small> <%= @account.proposed_royalties == 0 ? 'Savings per year!' : @account.proposed_company_savings == 0 ? 'Royalties per year!' : 'Savings and Royalties!' %></small></div>
       <div class="the_offerings">
         <p> <strong><%= @account.total_vehicles %></strong> Vehicles </p>
         <p> <strong>1</strong> Fueling Station </p>
         <% if @account.proposed_driver_savings > 0 %><p> <strong>$<%= number_with_precision(@account.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></strong> Driver savings per year </p><% end %>
         <p> <strong>$<%= number_with_precision(@account.conversion_charges, :precision => 3, :significant => true, :delimiter => ",") %></strong> Conversion costs
       </div>
-      <a href="#" class="btn btn-primary btn-large">Get it Now!</a> </div>
+      <a href="#" class="btn btn-primary btn-large">Tell me more!</a> </div>
+    </div>
   </div>
-</div>
 
-
-   <table class="table table-condensed">
+  <table class="table table-condensed">
     <thead>
       <tr>
       <th>Quantity</th>
@@ -67,13 +66,14 @@
       <th>Pays for fuel</th>
       <th>Pays for maintenance</th>
       <th>Percent propane</th>
+      <th>Company Savings</th>
+      <th>Driver Savings</th>
+      <th>Simple Payback</th>
       <th></th>
       <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-
     <% @account.fleets.each do |fleet| %>
       <tr>
         <td><%= fleet.quantity %> <%= @vehicles %></td>
@@ -83,34 +83,77 @@
         <td><%= fleet.pays_for_fuel %></td>
         <td><%= fleet.pays_for_maintenance %></td>
         <td><%= fleet.percent_propane %></td>
+        <td>$<%= number_with_precision(fleet.company_savings, :precision => 3, :significant => true, :delimiter => ",") %></td>
+        <td>$<%= number_with_precision(fleet.driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></td>
+        <td><%= number_with_precision(fleet.simple_payback, :precision => 2, :significant => true, :delimiter => ",") %> years</td>
         <td><%= link_to 'Edit', [fleet.account, fleet], :class => 'btn btn-mini' %></td>
         <td><%= link_to 'Destroy', [fleet.account, fleet], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
       </tr>
     <% end %>
   </table>
 
+  <p><%= link_to 'Add Another Vehicle Group', new_account_fleet_path(@account), :class => 'btn' %></p>
 
-<p><%= link_to 'Add Another Vehicle Group', new_account_fleet_path(@account) %></p>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Fuel per hour</th>
+        <th>Conversion cost</th>
+        <th>Propane factor</th>
+        <th>Hours per year</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
 
-<ul>
-  <li>Total vehicles: <%= @account.total_vehicles %></li>
-  <li>Value: $<%= number_with_precision(@account.fleet_value, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Current gasoline: <%= number_with_precision(@account.current_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Current driver gasoline: <%= number_with_precision(@account.current_driver_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Current company gasoline: <%= number_with_precision(@account.current_company_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Proposed gasoline (gal): <%= number_with_precision(@account.proposed_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Proposed driver gasoline (gal): <%= number_with_precision(@account.proposed_driver_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Proposed company gasoline (gal): <%= number_with_precision(@account.proposed_company_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Proposed propane (gal): <%= number_with_precision(@account.proposed_propane_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Proposed driver propane (gal): <%= number_with_precision(@account.proposed_driver_propane_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Proposed company propane (gal): <%= number_with_precision(@account.proposed_company_propane_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Company Savings: $<%= number_with_precision(@account.proposed_company_savings, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Turnkey Savings: $<%= number_with_precision(@account.proposed_company_turnkey_savings, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Royalties: $<%= number_with_precision(@account.proposed_royalties, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Turnkey Royalties: $<%= number_with_precision(@account.proposed_turnkey_royalties, :precision => 3, :significant => true, :delimiter => ",") %></li>
-  <li>Driver Savings: $<%= number_with_precision(@account.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></li>
- 
-</ul>
+    <tbody>
+      <% @account.equipment.each do |equipment| %>
+        <tr>
+          <td><%= equipment.name %></td>
+          <td><%= equipment.fuel_per_hour %></td>
+          <td><%= equipment.conversion_cost %></td>
+          <td><%= equipment.propane_factor %></td>
+          <td><%= equipment.hours_per_year %></td>
+          <td><%= link_to 'Edit', [equipment.account, equipment], :class => 'btn btn-mini' %></td>
+          <td><%= link_to 'Destroy', [equipment.account, equipment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br />
+
+  <p><%= link_to 'Add More Equipment', new_account_equipment_path(@account), :class => 'btn' %></p>
+
+  <br />
+
+  <p>
+  <%= link_to 'Edit Account', edit_account_path(@account), :class => 'btn' %>
+  </p>
+
+  <br />
+
+
+
+  <ul>
+    <li>Total vehicles: <%= @account.total_vehicles %></li>
+    <li>Value: $<%= number_with_precision(@account.fleet_value, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Current gasoline: <%= number_with_precision(@account.current_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Current driver gasoline: <%= number_with_precision(@account.current_driver_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Current company gasoline: <%= number_with_precision(@account.current_company_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed gasoline (gal): <%= number_with_precision(@account.proposed_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed driver gasoline (gal): <%= number_with_precision(@account.proposed_driver_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed company gasoline (gal): <%= number_with_precision(@account.proposed_company_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed propane (gal): <%= number_with_precision(@account.proposed_propane_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed driver propane (gal): <%= number_with_precision(@account.proposed_driver_propane_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed company propane (gal): <%= number_with_precision(@account.proposed_company_propane_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Company Savings: $<%= number_with_precision(@account.proposed_company_savings, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Turnkey Savings: $<%= number_with_precision(@account.proposed_company_turnkey_savings, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Royalties: $<%= number_with_precision(@account.proposed_royalties, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Turnkey Royalties: $<%= number_with_precision(@account.proposed_turnkey_royalties, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Driver Savings: $<%= number_with_precision(@account.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></li>
+  </ul>
 
 <% else %>
 
@@ -124,15 +167,12 @@
       <%= f.input :pays_for_maintenance, as: :radio_buttons, collection: [ "Company", "Driver"] %>
       <%= f.input :percent_propane %>
     <p>
-      <%= f.submit %>
+      <%= f.submit "Next", :class => "btn btn-primary btn-large" %>
     </p>
 
   <% end %>
-<% end %>
 
-<p>
-  <%= link_to 'Edit Account', edit_account_path(@account) %>
-</p>
+<% end %>
 
 
 

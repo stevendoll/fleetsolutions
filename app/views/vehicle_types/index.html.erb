@@ -1,6 +1,14 @@
-<h1>Listing vehicle_types</h1>
+<% content_for(:title) { "Vehicle Types" } %>
 
-<table>
+<div class="hgroup">
+  <h1>Vehicle Types</h1>
+  <ul class="breadcrumb pull-right">
+    <li><a href="<%= root_path %>">Admin</a> <span class="divider">/</span></li>
+    <li class="active">Vehicle Types</li>
+  </ul>
+</div>
+
+<table class="table table-condensed">
   <thead>
     <tr>
       <th>Name</th>

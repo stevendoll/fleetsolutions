@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @equipment.name %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @equipment.quantity %>
+</p>
+
+<p>
+  <strong>Equipment type:</strong>
+  <%= @equipment.equipment_type_id %>
+</p>
+
+<p>
+  <strong>Fuel per hour:</strong>
+  <%= @equipment.fuel_per_hour %>
+</p>
+
+<p>
+  <strong>Hours per year:</strong>
+  <%= @equipment.hours_per_year %>
+</p>
+
+<p>
+  <strong>Conversion cost:</strong>
+  <%= @equipment.conversion_cost %>
+</p>
+
+<p>
+  <strong>Percent propane:</strong>
+  <%= @equipment.percent_propane %>
+</p>
+
+<p>
+  <strong>Propane factor:</strong>
+  <%= @equipment.propane_factor %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @equipment.account_id %>
+</p>
+
+<%= link_to 'Edit', edit_account_equipment_path(@equipment.account, @equipment) %> |
+<%= link_to 'Back', @equipment.account %>

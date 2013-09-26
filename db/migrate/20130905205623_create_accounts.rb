@@ -1,5 +1,5 @@
 class CreateAccounts < ActiveRecord::Migration
-  def up
+  def change
     create_table :accounts, id: :uuid do |t|
       t.string :name
       t.text :address_1
@@ -18,8 +18,5 @@ class CreateAccounts < ActiveRecord::Migration
 
       t.timestamps
     end
-  end
-  def down
-    drop_table :accounts
   end
 end

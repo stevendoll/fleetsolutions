@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @equipment_type.name %>
+</p>
+
+<p>
+  <strong>Fuel per hour:</strong>
+  <%= @equipment_type.fuel_per_hour %>
+</p>
+
+<p>
+  <strong>Conversion cost:</strong>
+  <%= @equipment_type.conversion_cost %>
+</p>
+
+<p>
+  <strong>Propane factor:</strong>
+  <%= @equipment_type.propane_factor %>
+</p>
+
+<p>
+  <strong>Display order:</strong>
+  <%= @equipment_type.display_order %>
+</p>
+
+<%= link_to 'Edit', edit_equipment_type_path(@equipment_type) %> |
+<%= link_to 'Back', equipment_types_path %>

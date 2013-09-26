@@ -1,5 +1,7 @@
 Fleetsolutions::Application.routes.draw do
 
+  resources :equipment_types
+
   resources :posts do
     resources :comments
   end
@@ -7,6 +9,7 @@ Fleetsolutions::Application.routes.draw do
   resources :accounts do
     resources :fleets
     resources :stations
+    resources :equipment
   end
 
   resources :vehicle_types
@@ -19,6 +22,8 @@ Fleetsolutions::Application.routes.draw do
   get "/elements" => "home#elements"
   get "/services" => "home#services"
   get "/register" => "home#register"
+  
+  get "/calculator" => "calculator#new"
   
   
   devise_for :users, :controllers => {:registrations => "registrations"}

@@ -1,0 +1,14 @@
+<%= simple_form_for([@equipment.account, @equipment]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :equipment_type %>
+    <%= f.input :quantity %>
+    <%= f.input :hours_per_year %>
+    <%= f.input :percent_propane %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

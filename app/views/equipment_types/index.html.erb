@@ -1,0 +1,43 @@
+<% content_for(:title) { "Equipment Types" } %>
+
+<div class="hgroup">
+  <h1>Equipment Types</h1>
+  <ul class="breadcrumb pull-right">
+    <li><a href="<%= root_path %>">Admin</a> <span class="divider">/</span></li>
+    <li class="active">Equipment Types</li>
+  </ul>
+</div>
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Fuel per hour</th>
+      <th>Conversion cost</th>
+      <th>Propane factor</th>
+      <th>Display order</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @equipment_types.each do |equipment_type| %>
+      <tr>
+        <td><%= equipment_type.name %></td>
+        <td><%= equipment_type.fuel_per_hour %></td>
+        <td><%= equipment_type.conversion_cost %></td>
+        <td><%= equipment_type.propane_factor %></td>
+        <td><%= equipment_type.display_order %></td>
+        <td><%= link_to 'Show', equipment_type %></td>
+        <td><%= link_to 'Edit', edit_equipment_type_path(equipment_type) %></td>
+        <td><%= link_to 'Destroy', equipment_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Equipment type', new_equipment_type_path %>

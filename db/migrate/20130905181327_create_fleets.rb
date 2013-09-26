@@ -1,5 +1,5 @@
 class CreateFleets < ActiveRecord::Migration
-  def up
+  def change
     create_table :fleets, id: :uuid do |t|
       t.string :name
       t.integer :quantity
@@ -19,8 +19,5 @@ class CreateFleets < ActiveRecord::Migration
 
       t.timestamps
     end
-  end
-  def down
-    drop_table :fleets
   end
 end

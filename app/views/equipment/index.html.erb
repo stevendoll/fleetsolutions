@@ -1,0 +1,44 @@
+<h1>Listing equipment</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Equipment type</th>
+      <th>Fuel per hour</th>
+      <th>Hours per year</th>
+      <th>Conversion cost</th>
+      <th>Percent propane</th>
+      <th>Propane factor</th>
+      <th>Account</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @equipment.each do |equipment| %>
+      <tr>
+        <td><%= equipment.name %></td>
+        <td><%= equipment.quantity %></td>
+        <td><%= equipment.equipment_type_id %></td>
+        <td><%= equipment.fuel_per_hour %></td>
+        <td><%= equipment.hours_per_year %></td>
+        <td><%= equipment.conversion_cost %></td>
+        <td><%= equipment.percent_propane %></td>
+        <td><%= equipment.propane_factor %></td>
+        <td><%= equipment.account_id %></td>
+        <td><%= link_to 'Show', equipment %></td>
+        <td><%= link_to 'Edit', edit_equipment_path(equipment) %></td>
+        <td><%= link_to 'Destroy', equipment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Equipment', new_account_equipment_path %> 
+
