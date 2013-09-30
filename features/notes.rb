@@ -45,3 +45,12 @@ rails generate scaffold Inquiry email:string description:text
 rails generate scaffold Feedback email:string feedback_text:text
 rails generate scaffold Comment employee_id:uuid creator_id:uuid description:text comment_type_id:uuid
 
+Barriers that keep great ideas from being put into action: knowing what to do, getting it done, and paying for it...
+
+Tony and I had a great discussion with ... of the Montgomery Federal Credit Union on the structure of a working capital facility to support fleet conversions to bifuel propane. This would make it possible for Clear Skies, unique in the industry, to provide complete turn-key services for fleet conversions. Fleet owners can pocket the savings on day one.
+
+Every fleet owner wants to do the right thing, benefit the environment while minimizing expenses. Yet barriers keep these ideas from being put into action: knowing what to do, getting it done, and paying for it. While Clear Skies has made great progress in the first two, the capital costs of converting fleet vehicles has remained a thorny obstacle. With this financing structure, we aim to put that behind us too.
+
+The working capital facility would allow Clear Skies to completely finance a fleet conversion project, keeping the capital costs off the balance sheet of the fleet owner. This also means that Clear Skies accepts all risks of the project, and the fleet owner is able to fully participate in the savings while retaining the option to switch back to gasoline if desired. We this this is an opportunity too good to turn down.
+
+
