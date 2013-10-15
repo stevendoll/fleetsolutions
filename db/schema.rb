@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130921005152) do
+ActiveRecord::Schema.define(version: 20131014171336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20130921005152) do
     t.float    "conversion_cost"
     t.float    "percent_propane"
     t.float    "propane_factor"
-    t.uuid     "account_id"
+    t.uuid     "opportunity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -90,7 +90,33 @@ ActiveRecord::Schema.define(version: 20130921005152) do
     t.float    "propane_factor"
     t.float    "resale_value"
     t.float    "conversion_cost"
-    t.uuid     "account_id"
+    t.uuid     "opportunity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "opportunities", id: false, force: true do |t|
+    t.uuid     "id",                        null: false
+    t.string   "name"
+    t.text     "description"
+    t.string   "opportunity_type"
+    t.string   "phone"
+    t.string   "email"
+    t.text     "address_1"
+    t.text     "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "pays_for_fuel"
+    t.string   "fueling_location"
+    t.float    "propane_royalties"
+    t.float    "propane_turnkey_royalties"
+    t.float    "propane_price"
+    t.float    "propane_cost"
+    t.float    "propane_turnkey_cost"
+    t.float    "gasoline_price"
+    t.float    "annual_management_charge"
+    t.float    "conversion_margin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -126,7 +152,7 @@ ActiveRecord::Schema.define(version: 20130921005152) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.uuid     "account_id"
+    t.uuid     "opportunity_id"
     t.boolean  "attended"
     t.float    "development_cost"
     t.datetime "created_at"

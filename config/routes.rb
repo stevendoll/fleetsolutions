@@ -1,18 +1,26 @@
 Fleetsolutions::Application.routes.draw do
 
+  resources :opportunities
+
   resources :equipment_types
 
   resources :posts do
     resources :comments
   end
 
-  resources :accounts do
+  resources :opportunities do
     resources :fleets
     resources :stations
     resources :equipment
+    #resources :calculator, controller: 'accounts/calculator'
   end
 
   resources :vehicle_types
+
+  resources :calculator do
+    resources :basic_info
+    resources :add_vehicles
+  end
 
   root :to => "home#index"
 

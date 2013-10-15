@@ -1,6 +1,6 @@
 <ul class="nav pull-right">
   <li class="index"><%= link_to "Home", root_path %></li>
-  <li class="index"><%= link_to "Savings Calculator", new_account_path %></li>
+  <li class="index"><%= link_to "Savings Calculator", new_opportunity_path %></li>
   <li class="index"><%= link_to "Services", services_path %></li>
   <li class="index"><%= link_to "About Us", about_us_path %></li>
   <li class="index"><%= link_to "Blog", posts_path %></li>
@@ -8,7 +8,7 @@
   <% if user_signed_in? %>
     <% if current_user.has_role? :admin %>
       <li>
-        <%= link_to 'Accounts', accounts_path %>
+        <%= link_to 'Opportunities', opportunities_path %>
       </li>
       <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Admin<span class="caret"></span></a>
         <ul class="dropdown-menu">

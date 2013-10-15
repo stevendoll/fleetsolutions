@@ -1,7 +1,7 @@
 class Equipment < ActiveRecord::Base
   normalize_attributes :equipment_type_id
   belongs_to :equipment_type
-  belongs_to :account
+  belongs_to :opportunity
 
   validates_numericality_of :percent_propane, :greater_than_or_equal_to => 0.0, :less_than_or_equal_to => 100.0
   validates_presence_of :quantity

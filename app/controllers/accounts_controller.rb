@@ -25,6 +25,8 @@ class AccountsController < ApplicationController
 
   # POST /accounts
   # POST /accounts.json
+
+
   def create
     @account = Account.new(account_params)
 
@@ -37,12 +39,10 @@ class AccountsController < ApplicationController
     @account.gasoline_price = 3.65
     @account.annual_management_charge = 6000.0
 
-    #UserMailer.calculator_email.deliver
-
-
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account }
+        session[:account_id] = @account.id
+        format.html { redirect_to account_calculator_path( :add_fleets, :account_id => @account.id) }
         format.json { render action: 'show', status: :created, location: @account }
       else
         format.html { render action: 'new' }

@@ -29,7 +29,7 @@
         <td><%= equipment.conversion_cost %></td>
         <td><%= equipment.percent_propane %></td>
         <td><%= equipment.propane_factor %></td>
-        <td><%= equipment.account_id %></td>
+        <td><%= equipment.opportunity_id %></td>
         <td><%= link_to 'Show', equipment %></td>
         <td><%= link_to 'Edit', edit_equipment_path(equipment) %></td>
         <td><%= link_to 'Destroy', equipment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -40,5 +40,5 @@
 
 <br>
 
-<%= link_to 'New Equipment', new_account_equipment_path %> 
+<%= link_to 'New Equipment', new_opportunity_equipment_path %> 
 

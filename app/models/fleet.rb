@@ -1,16 +1,18 @@
 class Fleet < ActiveRecord::Base
   normalize_attributes :vehicle_type_id
   belongs_to :vehicle_type
-  belongs_to :account
+  belongs_to :opportunity
+  belongs_to :opportunity
 
-  validates_numericality_of :percent_propane, :greater_than_or_equal_to => 0.0, :less_than_or_equal_to => 100.0
+
+  #validates_numericality_of :percent_propane, :greater_than_or_equal_to => 0.0, :less_than_or_equal_to => 100.0
   validates_presence_of :quantity
   validates_numericality_of :quantity, :only_integer => true
   validates_presence_of :vehicle_type_id
   validates_presence_of :miles_per_year
   validates_numericality_of :miles_per_year, :greater_than_or_equal_to => 1000.0
-  validates_presence_of :pays_for_fuel
-  validates_presence_of :pays_for_maintenance
+  #validates_presence_of :pays_for_fuel
+  #validates_presence_of :pays_for_maintenance
 
 
   def fleet_value
@@ -65,17 +67,17 @@ class Fleet < ActiveRecord::Base
   end
 
   def savings
-    @savings ||= (gasoline_gal - proposed_gasoline_gal) * self.account.gasoline_price - proposed_propane_gal * self.account.propane_cost
+    @savings ||= (gasoline_gal - proposed_gasoline_gal) * self.opportunity.gasoline_price - proposed_propane_gal * self.opportunity.propane_cost
   end
   def company_savings
-    @company_savings ||= (company_gasoline_gal - proposed_company_gasoline_gal) * self.account.gasoline_price - proposed_company_propane_gal * self.account.propane_cost
+    @company_savings ||= (company_gasoline_gal - proposed_company_gasoline_gal) * self.opportunity.gasoline_price - proposed_company_propane_gal * self.opportunity.propane_cost
   end
   def driver_savings
-    @driver_savings ||= (driver_gasoline_gal - proposed_driver_gasoline_gal) * self.account.gasoline_price - proposed_driver_propane_gal * self.account.propane_cost
+    @driver_savings ||= (driver_gasoline_gal - proposed_driver_gasoline_gal) * self.opportunity.gasoline_price - proposed_driver_propane_gal * self.opportunity.propane_cost
   end
 
   def simple_payback
-    @simple_payback ||= ( savings > 0 ? quantity * conversion_cost * (1 + self.account.conversion_margin) / savings : 0 )
+    @simple_payback ||= ( savings > 0 ? quantity * conversion_cost * (1 + self.opportunity.conversion_margin) / savings : 0 )
   end
 
 

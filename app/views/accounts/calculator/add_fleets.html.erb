@@ -1,0 +1,28 @@
+<% content_for(:title) { "Fleet Savings" } %>
+
+  <div class="hgroup">
+    <h1>How much can you save?</h1>
+    <h2>Find our how much you can save by switching to propane.</h2>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li class="active">Fleet Savings</li>
+    </ul>
+  </div>
+
+  <%= simple_form_for([@account, @account.fleets.build(:percent_propane => 100.0, :pays_for_fuel => 'Company', :pays_for_maintenance => 'Company')]) do |f| %>
+  <%= f.error_notification %>
+    <p>
+      <%= f.input :quantity %>
+      <%= f.association :vehicle_type %>
+      <%= f.input :miles_per_year %>
+      <%= f.input :pays_for_fuel, as: :radio_buttons, collection: [ "Company", "Driver"] %>
+      <%= f.input :pays_for_maintenance, as: :radio_buttons, collection: [ "Company", "Driver"] %>
+      <%= f.input :percent_propane %>
+    <p>
+      <%= f.submit "Next", :class => "btn btn-primary btn-large" %>
+    </p>
+
+  <% end %>
+
+
+

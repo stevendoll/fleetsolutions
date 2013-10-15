@@ -4,12 +4,27 @@
     <h1>New Vehicle Group</h1>
     <ul class="breadcrumb pull-right">
       <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
-      <li><a href="<%= account_fleets_path(@fleet.account) %>">Fleet</a> <span class="divider">/</span></li>
+      <li><a href="<%= opportunity_fleets_path(@fleet.opportunity) %>">Fleet</a> <span class="divider">/</span></li>
       <li class="active">New Vehicle Group</li>
     </ul>
   </div>
 
+<%= simple_form_for([@fleet.opportunity, @fleet]) do |f| %>
+  <%= f.error_notification %>
 
-<%= render 'form' %>
+  <div class="form-inputs">
+    <%= f.input :quantity %>
+    <%= f.association :vehicle_type %>
+    <%= f.input :miles_per_year %>
+    <% if @fleet.opportunity.pays_for_fuel == 'Both' %>
+    <%= f.input :pays_for_fuel, as: :radio_buttons, collection: [ "Company", "Driver"], selected: "Company" %>
+    <% end %>
 
-<%= link_to 'Back', account_fleets_path(@fleet.account)%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', opportunity_fleets_path(@fleet.opportunity)%>

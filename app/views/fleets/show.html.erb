@@ -57,9 +57,9 @@
 
 <p>
   <strong>Account:</strong>
-  <%= @fleet.account_id %>
+  <%= @fleet.opportunity.name %>
 </p>
 
-<%= link_to 'Edit', edit_account_fleet_path(@fleet.account, @fleet) %> |
-<%= link_to 'Back', @fleet.account %>
+<%= link_to 'Edit', edit_opportunity_fleet_path(@fleet.opportunity, @fleet) %> |
+<%= link_to 'Back', @fleet.opportunity %>
 

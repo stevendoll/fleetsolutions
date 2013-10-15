@@ -15,7 +15,7 @@ class CreateFleets < ActiveRecord::Migration
       t.float :propane_factor
       t.float :resale_value
       t.float :conversion_cost
-      t.uuid :account_id
+      t.uuid :opportunity_id
 
       t.timestamps
     end

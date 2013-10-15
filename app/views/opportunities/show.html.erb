@@ -1,0 +1,209 @@
+<% content_for(:title) { "opportunity Dashboard" } %>
+
+  <div class="hgroup">
+    <% if @opportunity.fleets.count > 0 %>
+    <h1><%= @opportunity.name %> Fleet Savings</h1>
+    <% else %>
+    <h1>About your vehicles</h1>
+    <% end %>
+    <h2>Find our how much you can make by switching to propane.</h2>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li class="active">Fleet Savings</li>
+    </ul>
+  </div>
+
+<% if @opportunity.fleets.count > 0 %>
+
+<div class="row pricing_wrapper">
+  <div class="span4">
+    <div class="pricing_plan">
+      <h3>Test<strong>Drive</strong> <small>Try it out yourself</small></h3>
+      <div class="the_price"><span></span>Unlimited<br /><small>Fuel for 30 days</small></div>
+      <div class="the_offerings">
+        <p> <strong>2</strong> Vehicles </p>
+        <p> <strong>30</strong> Days </p>
+        <p> <strong>$1,000</strong> </p>
+        <% if @opportunity.proposed_driver_savings > 0 %><p> &nbsp; </p><% end %>
+      </div>
+      <a href="#" class="btn btn-primary btn-large">Get it Now!</a> </div>
+  </div>
+  <div class="span4">
+    <div class="pricing_plan special">
+      <h3>Turn<strong>Key</strong> <small>No upfront cost!</small></h3>
+      <div class="the_price">
+        <span>$</span><%= number_with_precision(@opportunity.proposed_turnkey_royalties + @opportunity.proposed_company_turnkey_savings, :precision => 3, :significant => true, :delimiter => ",") %><br /><small> <%= @opportunity.proposed_royalties == 0 ? 'Savings per year!' : @opportunity.proposed_company_savings == 0 ? 'Royalties per year!' : 'Savings and Royalties!' %></small>
+      </div>
+      <div class="the_offerings">
+        <p> <strong><%= @opportunity.total_vehicles %></strong> Vehicles </p>
+        <p> <strong>1</strong> Fueling Station </p>
+        <% if @opportunity.proposed_driver_savings > 0 %><p> <strong>$<%= number_with_precision(@opportunity.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></strong> Driver savings per year </p><% end %>
+        <p> <strong>Leave the work to us</strong></p>
+      </div>
+      <a href="#" class="btn btn-primary btn-large">Tell me more!</a> </div>
+  </div>
+  <div class="span4">
+    <div class="pricing_plan">
+      <h3>Pro<strong>Plan</strong> <small>Maximize your savings</small></h3>
+      <div class="the_price"><span>$</span><%= number_with_precision(@opportunity.proposed_royalties + @opportunity.proposed_company_savings, :precision => 3, :significant => true, :delimiter => ",") %><br /><small> <%= @opportunity.proposed_royalties == 0 ? 'Savings per year!' : @opportunity.proposed_company_savings == 0 ? 'Royalties per year!' : 'Savings and Royalties!' %></small></div>
+      <div class="the_offerings">
+        <p> <strong><%= @opportunity.total_vehicles %></strong> Vehicles </p>
+        <p> <strong>1</strong> Fueling Station </p>
+        <% if @opportunity.proposed_driver_savings > 0 %><p> <strong>$<%= number_with_precision(@opportunity.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></strong> Driver savings per year </p><% end %>
+        <p> <strong>$<%= number_with_precision(@opportunity.conversion_charges, :precision => 3, :significant => true, :delimiter => ",") %></strong> Conversion costs
+      </div>
+      <a href="#" class="btn btn-primary btn-large">Tell me more!</a> </div>
+    </div>
+  </div>
+
+
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+      <th>Quantity</th>
+      <th>Vehicles</th>
+      <th>Mileage</th>
+      <th>Miles per year</th>
+      <th>Pays for fuel</th>
+      <% if user_signed_in? %>
+        <% if current_user.has_role? :admin %>
+          <th>Pays for maintenance</th>
+          <th>Percent propane</th>
+          <th>Company Savings</th>
+          <th>Driver Savings</th>
+          <th>Simple Payback</th>
+        <% end %>
+      <% end %>
+
+      <th></th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @opportunity.fleets.each do |fleet| %>
+      <tr>
+        <td><%= fleet.quantity %> <%= @vehicles %></td>
+        <td><%= fleet.name %></td>
+        <td><%= fleet.mileage %></td>
+        <td><%= fleet.miles_per_year %></td>
+        <td><%= fleet.pays_for_fuel %></td>
+        <% if user_signed_in? %>
+          <% if current_user.has_role? :admin %>
+            <td><%= fleet.pays_for_maintenance %></td>
+            <td><%= fleet.percent_propane %></td>
+            <td>$<%= number_with_precision(fleet.company_savings, :precision => 3, :significant => true, :delimiter => ",") %></td>
+            <td>$<%= number_with_precision(fleet.driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></td>
+            <td><%= number_with_precision(fleet.simple_payback, :precision => 2, :significant => true, :delimiter => ",") %> years</td>
+          <% end %>
+        <% end %>
+        <td><%= link_to 'Edit', [fleet.opportunity, fleet], :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Destroy', [fleet.opportunity, fleet], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <p><%= link_to 'Add Another Vehicle Group', new_opportunity_fleet_path(@opportunity), :class => 'btn' %></p>
+
+  <br />
+
+  <% if @opportunity.equipment.count > 0 %>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Quantity</th>
+          <th>Name</th>
+          <th>Fuel per hour</th>
+          <th>Hours per year</th>
+          <% if user_signed_in? %>
+            <% if current_user.has_role? :admin %>
+              <th>Info</th>
+            <% end %>
+          <% end %>
+
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @opportunity.equipment.each do |equipment| %>
+          <tr>
+            <td><%= equipment.quantity %></td>
+            <td><%= equipment.name %></td>
+            <td><%= equipment.fuel_per_hour %></td>
+            <td><%= equipment.hours_per_year %></td>
+            <% if user_signed_in? %>
+              <% if current_user.has_role? :admin %>
+                <td>Info</td>
+              <% end %>
+            <% end %>
+
+            <td><%= link_to 'Edit', [equipment.opportunity, equipment], :class => 'btn btn-mini' %></td>
+            <td><%= link_to 'Destroy', [equipment.opportunity, equipment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <p><%= link_to 'Add More Equipment', new_opportunity_equipment_path(@opportunity), :class => 'btn' %></p>
+
+  <% else %>
+
+  <p><%= link_to 'Add Equipment', new_opportunity_equipment_path(@opportunity), :class => 'btn' %></p>
+
+  <% end %>
+
+
+  <br />
+
+  <% if user_signed_in? %>
+    <% if current_user.has_role? :admin %>
+
+  <p>
+  <%= link_to 'Edit opportunity', edit_opportunity_path(@opportunity), :class => 'btn' %>
+  </p>
+
+
+  <ul>
+    <li>Total vehicles: <%= @opportunity.total_vehicles %></li>
+    <li>Value: $<%= number_with_precision(@opportunity.fleet_value, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Current gasoline: <%= number_with_precision(@opportunity.current_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Current driver gasoline: <%= number_with_precision(@opportunity.current_driver_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Current company gasoline: <%= number_with_precision(@opportunity.current_company_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed gasoline (gal): <%= number_with_precision(@opportunity.proposed_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed driver gasoline (gal): <%= number_with_precision(@opportunity.proposed_driver_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed company gasoline (gal): <%= number_with_precision(@opportunity.proposed_company_gasoline_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed propane (gal): <%= number_with_precision(@opportunity.proposed_propane_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed driver propane (gal): <%= number_with_precision(@opportunity.proposed_driver_propane_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Proposed company propane (gal): <%= number_with_precision(@opportunity.proposed_company_propane_consumption, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Company Savings: $<%= number_with_precision(@opportunity.proposed_company_savings, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Turnkey Savings: $<%= number_with_precision(@opportunity.proposed_company_turnkey_savings, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Royalties: $<%= number_with_precision(@opportunity.proposed_royalties, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Turnkey Royalties: $<%= number_with_precision(@opportunity.proposed_turnkey_royalties, :precision => 3, :significant => true, :delimiter => ",") %></li>
+    <li>Driver Savings: $<%= number_with_precision(@opportunity.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></li>
+  </ul>
+
+    <% end %>
+  <% end %>
+
+<% else %>
+
+  <%= simple_form_for([@opportunity, @opportunity.fleets.build(:percent_propane => 100.0, :pays_for_fuel => 'Company', :pays_for_maintenance => 'Company')]) do |f| %>
+  <%= f.error_notification %>
+    <p>
+      <%= f.input :quantity %>
+      <%= f.association :vehicle_type %>
+      <%= f.input :miles_per_year %>
+      <% if @opportunity.pays_for_fuel == 'Both' %>
+      <%= f.input :pays_for_fuel, as: :radio_buttons, collection: [ "Company", "Driver"], selected: "Company" %>
+      <% end %>
+    <p>
+      <%= f.submit "Next", :class => "btn btn-primary btn-large" %>
+    </p>
+
+  <% end %>
+
+<% end %>
+
+
+

@@ -1,0 +1,39 @@
+<% content_for(:title) { "Savings Calculator" } %>
+
+  <div class="hgroup">
+    <h1>How much can you save?</h1>
+    <h2>Find our how much you can save by switching to propane.</h2>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li class="active">Savings Calculator</li>
+    </ul>
+  </div>
+
+<%= simple_form_for(@opportunity) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+
+<%= f.input :opportunity_type, 
+:collection => [['Taxi', 'Taxi, limousine, and shuttle bus'], ['Trade vehicles', 'Delivery, construction and trade vehicles: vans, pickups and small trucks'], ['Corporate Fleet', 'Company cars and municipal vehicles for staff and executives'], ['Landscaping', 'Landscaping trucks and mowers'], ['Law enforcement', 'Law enforcement'], ['Heavy equipment', 'Heavy equipment'], ['Other', 'Other']], 
+:label_method => :last, 
+:value_method => :first, 
+:as => :radio_buttons, label: 'What best describes this opportunity?' %>
+<%= f.input :description, label: 'Tell us more?' %>
+    <%= f.input :pays_for_fuel, :collection => [['Company', 'The company pays for fuel'], ['Driver', 'Drivers pay for their own fuel'],['Both', 'It depends']], 
+:label_method => :last, 
+:value_method => :first, 
+:as => :radio_buttons, label: 'In general, who pays for fuel?' %>
+    <%= f.input :fueling_location, :collection => [['On-site', 'We have space to install a propane fueling station for our fleet'], ['On-site public', 'We have space to install a propane fueling station, and we would like to earn even more by making it available to other Clear Skies customers.'],['Off-site', 'We think we know of a nearby location for a fueling station.'],['None', 'Sorry, we do not have any space for a fueling station. You will have to help us with that.']], 
+:label_method => :last, 
+:value_method => :first, 
+:as => :radio_buttons, label: 'Where can we locate a propane fueling station? (requires as little as 100 ft<sup>2</sup>, 25 feet from the nearest building.)' %>
+    
+
+  <div class="form-actions">
+    <%= f.submit "Next", :class => "btn btn-primary btn-large" %>
+  </div>
+<% end %>
+
+

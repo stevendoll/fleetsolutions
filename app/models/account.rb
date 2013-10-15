@@ -67,7 +67,7 @@ class Account < ActiveRecord::Base
   end
 
   def proposed_turnkey_royalties
-    @turnkey_royalties = self.proposed_driver_propane_consumption * propane_turnkey_royalties
+    @turnkey_royalties =  self.proposed_driver_propane_consumption * propane_turnkey_royalties
   end
 
   def conversion_charges

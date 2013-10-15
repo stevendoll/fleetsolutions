@@ -9,7 +9,7 @@ class CreateEquipment < ActiveRecord::Migration
       t.float :conversion_cost
       t.float :percent_propane
       t.float :propane_factor
-      t.uuid :account_id
+      t.uuid :opportunity_id
 
       t.timestamps
     end

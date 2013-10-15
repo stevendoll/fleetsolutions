@@ -4,7 +4,7 @@
     <h1>New Equipment</h1>
     <ul class="breadcrumb pull-right">
       <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
-      <li><a href="<%= account_equipment_index_path(@equipment.account) %>">Equipment</a> <span class="divider">/</span></li>
+      <li><a href="<%= opportunity_equipment_index_path(@equipment.opportunity) %>">Equipment</a> <span class="divider">/</span></li>
       <li class="active">New Equipment</li>
     </ul>
   </div>
@@ -12,4 +12,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', account_equipment_index_path(@equipment.account)%>
+<%= link_to 'Back', opportunity_equipment_index_path(@equipment.opportunity)%>

@@ -9,6 +9,17 @@ rails generate scaffold Equipment name:string quantity:integer equipment_type_id
 rails generate scaffold Post title:string author_id:uuid published_on:date teaser:text body:text 
 rails generate scaffold Comment commenter:string post_id:uuid email:string published_on:date body:text 
 
+rails generate scaffold Opportunity name:string phone:string email:string 
+log
+notes
+comments
+contacts
+status
+
+
+
+
+address_1:text address_2:text city:string state:string zip:string
 
 
 

@@ -5,8 +5,8 @@ class FleetsController < ApplicationController
   # GET /fleets
   # GET /fleets.json
   def index
-    account = Account.find(params[:account_id])
-    @fleets = account.fleets
+    opportunity = Opportunity.find(params[:opportunity_id])
+    @fleets = opportunity.fleets
   end
 
   # GET /fleets/1
@@ -16,8 +16,8 @@ class FleetsController < ApplicationController
 
   # GET /fleets/new
   def new
-    account = Account.find(params[:account_id])
-    @fleet = account.fleets.build
+    opportunity = Opportunity.find(params[:opportunity_id])
+    @fleet = opportunity.fleets.build
     @fleet.pays_for_fuel = 'Company'
     @fleet.pays_for_maintenance = 'Company'
     @fleet.percent_propane = 100.0
@@ -26,17 +26,17 @@ class FleetsController < ApplicationController
   # GET /fleets/1/edit
   def edit
     #1st you retrieve the post thanks to params[:post_id]
-    account = Account.find(params[:account_id])
+    opportunity = Opportunity.find(params[:opportunity_id])
     #2nd you retrieve the comment thanks to params[:id]
-    @fleet = account.fleets.find(params[:id])
+    @fleet = opportunity.fleets.find(params[:id])
 
   end
 
   # POST /fleets
   # POST /fleets.json
   def create
-    @account = Account.find(params[:account_id])
-    @fleet = @account.fleets.create(fleet_params)
+    @opportunity = Opportunity.find(params[:opportunity_id])
+    @fleet = @opportunity.fleets.create(fleet_params)
 
     unless @fleet.vehicle_type.blank?
       @fleet.name = @fleet.vehicle_type.name
@@ -47,13 +47,22 @@ class FleetsController < ApplicationController
       @fleet.conversion_cost = @fleet.vehicle_type.conversion_cost
       @fleet.propane_factor = @fleet.vehicle_type.propane_factor
       @fleet.maintenance_per_mile = 0.0447
-      @fleet.save
     end
+
+    unless @opportunity.pays_for_fuel == 'Both'
+      @fleet.pays_for_fuel = @opportunity.pays_for_fuel
+     end
+
+    @fleet.percent_propane = 100.0
+    @fleet.pays_for_maintenance = 'Company'
+
+    @fleet.save
+ 
 
 
     respond_to do |format|
-      if @account.update_attributes(params[:account])
-        format.html { redirect_to account_path(@account), notice: 'Vehicle group was added.' }
+      if @opportunity.update_attributes(params[:opportunity])
+        format.html { redirect_to opportunity_path(@opportunity), notice: 'Vehicle group was added.' }
         format.json { render action: 'show', status: :created, location: @fleet }
       else
         format.html { render :action => 'new', alert: 'Status: all fields are required.' }
@@ -66,11 +75,11 @@ class FleetsController < ApplicationController
   # PATCH/PUT /fleets/1
   # PATCH/PUT /fleets/1.json
   def update
-    @account = Account.find(params[:account_id])
+    @opportunity = Opportunity.find(params[:opportunity_id])
 
     respond_to do |format|
       if @fleet.update(fleet_params)
-        format.html { redirect_to account_path(@account), notice: 'Fleet was updated.' }
+        format.html { redirect_to opportunity_path(@opportunity), notice: 'Fleet was updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -82,10 +91,10 @@ class FleetsController < ApplicationController
   # DELETE /fleets/1
   # DELETE /fleets/1.json
   def destroy
-    @account = Account.find(params[:account_id])
-    @fleet = @account.fleets.find(params[:id])
+    @opportunity = Opportunity.find(params[:opportunity_id])
+    @fleet = @opportunity.fleets.find(params[:id])
     @fleet.destroy
-    redirect_to account_path(@account), notice: 'Vehicle group was deleted.'
+    redirect_to opportunity_path(@opportunity), notice: 'Vehicle group was deleted.'
   end
 
   private

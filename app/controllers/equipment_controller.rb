@@ -5,8 +5,8 @@ class EquipmentController < ApplicationController
   # GET /equipment
   # GET /equipment.json
   def index
-    account = Account.find(params[:account_id])
-    @equipment = account.equipment
+    opportunity = Opportunity.find(params[:opportunity_id])
+    @equipment = opportunity.equipment
   end
 
   # GET /equipment/1
@@ -16,25 +16,25 @@ class EquipmentController < ApplicationController
 
   # GET /equipment/new
   def new
-    account = Account.find(params[:account_id])
-    @equipment = account.equipment.build
+    opportunity = Opportunity.find(params[:opportunity_id])
+    @equipment = opportunity.equipment.build
     @equipment.percent_propane = 100.0
   end
 
   # GET /equipment/1/edit
   def edit
     #1st you retrieve the post thanks to params[:post_id]
-    account = Account.find(params[:account_id])
+    opportunity = Opportunity.find(params[:opportunity_id])
     #2nd you retrieve the comment thanks to params[:id]
-    @equipment = account.equipment.find(params[:id])
+    @equipment = opportunity.equipment.find(params[:id])
 
   end
 
   # POST /equipment
   # POST /equipment.json
   def create
-    @account = Account.find(params[:account_id])
-    @equipment = @account.equipment.create(equipment_params)
+    @opportunity = Opportunity.find(params[:opportunity_id])
+    @equipment = @opportunity.equipment.create(equipment_params)
 
     unless @equipment.equipment_type.blank?
       @equipment.name = @equipment.equipment_type.name
@@ -46,8 +46,8 @@ class EquipmentController < ApplicationController
 
 
     respond_to do |format|
-      if @account.update_attributes(params[:account])
-        format.html { redirect_to account_path(@account), notice: 'Vehicle group was added.' }
+      if @opportunity.update_attributes(params[:opportunity])
+        format.html { redirect_to opportunity_path(@opportunity), notice: 'Vehicle group was added.' }
         format.json { render action: 'show', status: :created, location: @equipment }
       else
         format.html { render :action => 'new', alert: 'Status: all fields are required.' }
@@ -60,11 +60,11 @@ class EquipmentController < ApplicationController
   # PATCH/PUT /equipment/1
   # PATCH/PUT /equipment/1.json
   def update
-    @account = Account.find(params[:account_id])
+    @opportunity = Opportunity.find(params[:opportunity_id])
 
     respond_to do |format|
       if @equipment.update(equipment_params)
-        format.html { redirect_to account_path(@account), notice: 'Equipment was updated.' }
+        format.html { redirect_to opportunity_path(@opportunity), notice: 'Equipment was updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -76,10 +76,10 @@ class EquipmentController < ApplicationController
   # DELETE /equipment/1
   # DELETE /equipment/1.json
   def destroy
-    @account = Account.find(params[:account_id])
-    @equipment = @account.equipment.find(params[:id])
+    @opportunity = Opportunity.find(params[:opportunity_id])
+    @equipment = @opportunity.equipment.find(params[:id])
     @equipment.destroy
-    redirect_to account_path(@account), notice: 'Vehicle group was deleted.'
+    redirect_to opportunity_path(@opportunity), notice: 'Vehicle group was deleted.'
   end
 
   private
@@ -90,6 +90,6 @@ class EquipmentController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def equipment_params
-      params.require(:equipment).permit(:name, :quantity, :equipment_type_id, :fuel_per_hour, :hours_per_year, :conversion_cost, :percent_propane, :account_id)
+      params.require(:equipment).permit(:name, :quantity, :equipment_type_id, :fuel_per_hour, :hours_per_year, :conversion_cost, :percent_propane, :opportunity_id)
     end
 end

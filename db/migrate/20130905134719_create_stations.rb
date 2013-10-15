@@ -7,7 +7,7 @@ class CreateStations < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :zip
-      t.uuid :account_id
+      t.uuid :opportunity_id
       t.boolean :attended
       t.float :development_cost
 
