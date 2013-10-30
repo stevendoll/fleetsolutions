@@ -74,6 +74,24 @@ class OpportunitiesController < ApplicationController
     end
   end
 
+  def invite
+    @opportunity = Opportunity.find(params[:id])
+    #format.html { render action: 'new', notice: 'We sent you an email with information to get started.' }
+    # authorize! :invite, @user, :message => 'Not authorized as an administrator.'
+    # @user = User.find(params[:id])
+    # @user.send_confirmation_instructions
+    # redirect_to :back, :only_path => true, :notice => "Sent invitation to #{@user.email}."
+  end
+
+  def thankyou
+    @opportunity = Opportunity.find(params[:id])
+    #format.html { render action: 'new', notice: 'We sent you an email with information to get started.' }
+    # authorize! :invite, @user, :message => 'Not authorized as an administrator.'
+    # @user = User.find(params[:id])
+    # @user.send_confirmation_instructions
+    # redirect_to :back, :only_path => true, :notice => "Sent invitation to #{@user.email}."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_opportunity

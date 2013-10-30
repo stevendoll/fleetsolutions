@@ -5,7 +5,14 @@
     <%= f.association :equipment_type %>
     <%= f.input :quantity %>
     <%= f.input :hours_per_year %>
+    <%= f.input :fuel_per_hour %>
     <%= f.input :percent_propane %>
+      <% if user_signed_in? %>
+        <% if current_user.has_role? :admin %>
+          <%= f.input :conversion_cost %>
+        <% end %>
+      <% end %>
+    <%= f.input :propane_factor %>
   </div>
 
   <div class="form-actions">

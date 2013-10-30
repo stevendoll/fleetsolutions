@@ -48,6 +48,7 @@ group :test do
 end
 group :production do
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
 group :assets do
   #gem 'therubyracer', :platform=>:ruby

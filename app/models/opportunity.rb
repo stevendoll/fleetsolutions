@@ -5,6 +5,8 @@ class Opportunity < ActiveRecord::Base
 
   validates_presence_of :name
 
+  # vehicles
+
   def total_vehicles
     @vehicles ||= self.fleets.inject(0) { |sum, a| sum += a.quantity }
   end
@@ -49,12 +51,34 @@ class Opportunity < ActiveRecord::Base
     @proposed_company_propane ||= self.fleets.inject(0) { |sum, a| sum += a.proposed_company_propane_gal }
   end
 
+
+  # equipment
+
+  def total_equipment
+    @equipment ||= self.equipment.inject(0) { |sum, a| sum += a.quantity }
+  end
+
+  def current_equipment_gasoline_consumption
+    @gasoline ||= self.equipment.inject(0) { |sum, a| sum += a.gasoline_gal }
+  end
+
+  def proposed_equipment_gasoline_consumption
+    @proposed_gasoline ||= self.equipment.inject(0) { |sum, a| sum += a.proposed_gasoline_gal }
+  end
+
+  def proposed_equipment_propane_consumption
+    @proposed_propane ||= self.equipment.inject(0) { |sum, a| sum += a.proposed_propane_gal }
+  end
+
+
+  # savings
+
   def proposed_company_turnkey_savings
-    @company_savings = (self.current_company_gasoline_consumption - self.proposed_company_gasoline_consumption) * self.gasoline_price - self.proposed_company_propane_consumption * self.propane_turnkey_cost
+    @company_savings  = (self.current_company_gasoline_consumption + self.current_equipment_gasoline_consumption - self.proposed_company_gasoline_consumption - self.proposed_equipment_gasoline_consumption) * self.gasoline_price - (self.proposed_company_propane_consumption + self.proposed_equipment_propane_consumption) * self.propane_turnkey_cost
   end
 
   def proposed_company_savings
-    @company_savings = (self.current_company_gasoline_consumption - self.proposed_company_gasoline_consumption) * self.gasoline_price - self.proposed_company_propane_consumption * self.propane_cost
+    @company_savings  = (self.current_company_gasoline_consumption + self.current_equipment_gasoline_consumption - self.proposed_company_gasoline_consumption - self.proposed_equipment_gasoline_consumption) * self.gasoline_price - (self.proposed_company_propane_consumption + self.proposed_equipment_propane_consumption) * self.propane_cost
   end
 
   def proposed_driver_savings
@@ -70,7 +94,8 @@ class Opportunity < ActiveRecord::Base
   end
 
   def conversion_charges
-    @conversion ||= self.fleets.inject(0) { |sum, a| sum += a.quantity * a.conversion_cost } * (1 + self.conversion_margin)
+    @conversion ||= (self.fleets.inject(0) { |sum, a| sum += a.quantity * a.conversion_cost } + self.equipment.inject(0) { |sum, a| sum += a.quantity * a.conversion_cost }) * (1 + self.conversion_margin)
   end
+
 
 end

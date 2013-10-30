@@ -9,7 +9,15 @@ rails generate scaffold Equipment name:string quantity:integer equipment_type_id
 rails generate scaffold Post title:string author_id:uuid published_on:date teaser:text body:text 
 rails generate scaffold Comment commenter:string post_id:uuid email:string published_on:date body:text 
 
-rails generate scaffold Opportunity name:string phone:string email:string 
+rails generate scaffold Opportunity name:string description:text opportunity_type:string phone:string email:string address_1:text address_2:text city:string state:string zip:string pays_for_fuel:string fueling_location:string propane_royalties:float propane_turnkey_royalties:float propane_price:float propane_cost:float propane_turnkey_cost:float gasoline_price:float annual_management_charge:float conversion_margin:float 
+
+
+pays for fuel?
+type of fleet - taxi, municipal fleet, law enforcement, construction, landscaping, company vehicles
+fueling station location: 
+
+
+
 log
 notes
 comments

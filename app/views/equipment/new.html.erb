@@ -4,12 +4,21 @@
     <h1>New Equipment</h1>
     <ul class="breadcrumb pull-right">
       <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
-      <li><a href="<%= opportunity_equipment_index_path(@equipment.opportunity) %>">Equipment</a> <span class="divider">/</span></li>
       <li class="active">New Equipment</li>
     </ul>
   </div>
 
+  <%= simple_form_for([@equipment.opportunity, @equipment]) do |f| %>
+    <%= f.error_notification %>
 
-<%= render 'form' %>
+    <div class="form-inputs">
+      <%= f.association :equipment_type %>
+      <%= f.input :quantity %>
+      <%= f.input :hours_per_year %>
+      <%= f.input :percent_propane %>
+    </div>
 
-<%= link_to 'Back', opportunity_equipment_index_path(@equipment.opportunity)%>
+    <div class="form-actions">
+      <%= f.button :submit %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Back', @equipment.opportunity %>
+    </div>
+  <% end %>

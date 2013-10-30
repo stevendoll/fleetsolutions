@@ -1,6 +1,33 @@
-<h1>Editing fleet</h1>
+<% content_for(:title) { "Edit Fleet" } %>
 
-<%= render 'form' %>
+  <div class="hgroup">
+    <h1>Edit Fleet</h1>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li class="active">Edit Fleet</li>
+    </ul>
+  </div>
 
-<%= link_to 'Show', [@fleet.opportunity, @fleet] %> |
-<%= link_to 'Back', @fleet.opportunity %>
+<%= simple_form_for([@fleet.opportunity, @fleet]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :vehicle_type %>
+    <%= f.input :quantity %>
+    <%= f.input :miles_per_year %>
+    <%= f.input :name, label: 'Description' %>
+    <%= f.input :pays_for_fuel, as: :radio_buttons, collection: [ "Company", "Driver"], selected: "Company" %>
+    <%= f.input :pays_for_maintenance, as: :radio_buttons, collection: [ "Company", "Driver"] %>
+      <% if user_signed_in? %>
+        <% if current_user.has_role? :admin %>
+          <%= f.input :conversion_cost %>
+        <% end %>
+      <% end %>
+    <%= f.input :percent_propane %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Back', @fleet.opportunity %>
+  </div>
+<% end %>
+

@@ -26,7 +26,8 @@
         <p> <strong>$1,000</strong> </p>
         <% if @opportunity.proposed_driver_savings > 0 %><p> &nbsp; </p><% end %>
       </div>
-      <a href="#" class="btn btn-primary btn-large">Get it Now!</a> </div>
+      <a class="btn btn-primary btn-large" data-toggle="modal" href="#request-invite">Get started!</a>
+    </div>
   </div>
   <div class="span4">
     <div class="pricing_plan special">
@@ -40,7 +41,8 @@
         <% if @opportunity.proposed_driver_savings > 0 %><p> <strong>$<%= number_with_precision(@opportunity.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></strong> Driver savings per year </p><% end %>
         <p> <strong>Leave the work to us</strong></p>
       </div>
-      <a href="#" class="btn btn-primary btn-large">Tell me more!</a> </div>
+      <a class="btn btn-primary btn-large" data-toggle="modal" href="#request-invite">Tell me more!</a>
+    </div>
   </div>
   <div class="span4">
     <div class="pricing_plan">
@@ -52,9 +54,27 @@
         <% if @opportunity.proposed_driver_savings > 0 %><p> <strong>$<%= number_with_precision(@opportunity.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></strong> Driver savings per year </p><% end %>
         <p> <strong>$<%= number_with_precision(@opportunity.conversion_charges, :precision => 3, :significant => true, :delimiter => ",") %></strong> Conversion costs
       </div>
-      <a href="#" class="btn btn-primary btn-large">Tell me more!</a> </div>
+      <a class="btn btn-primary btn-large" data-toggle="modal" href="#request-invite">Tell me more!</a>
     </div>
   </div>
+</div>
+
+      <div id="request-invite" class="modal" style="display: none;">
+        <%= simple_form_for @opportunity, :url => thankyou_opportunity_path(@opportunity) , :html => {:class => 'form-horizontal' } do |f| %> 
+          <div class="modal-header">
+            <a class="close" data-dismiss="modal">&#215;</a>
+            <h3>Request Invitation</h3>
+          </div>
+          <div class="modal-body">
+            <%= f.error_notification %>
+            <%= f.input :email, :placeholder => 'user@example.com' %>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "Request Invitation", :class => "btn btn-primary", :id => 'invitation_button' %>
+            <a class="btn" data-dismiss="modal" href="#">Close</a>
+          </div>
+        <% end %>
+      </div>
 
 
   <table class="table table-condensed">
@@ -96,8 +116,8 @@
             <td><%= number_with_precision(fleet.simple_payback, :precision => 2, :significant => true, :delimiter => ",") %> years</td>
           <% end %>
         <% end %>
-        <td><%= link_to 'Edit', [fleet.opportunity, fleet], :class => 'btn btn-mini' %></td>
-        <td><%= link_to 'Destroy', [fleet.opportunity, fleet], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Edit', edit_opportunity_fleet_path(fleet.opportunity, fleet), :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Delete', [fleet.opportunity, fleet], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
       </tr>
     <% end %>
   </table>
@@ -116,7 +136,9 @@
           <th>Hours per year</th>
           <% if user_signed_in? %>
             <% if current_user.has_role? :admin %>
-              <th>Info</th>
+              <th>Percent propane</th>
+              <th>Company Savings</th>
+              <th>Simple Payback</th>
             <% end %>
           <% end %>
 
@@ -134,12 +156,14 @@
             <td><%= equipment.hours_per_year %></td>
             <% if user_signed_in? %>
               <% if current_user.has_role? :admin %>
-                <td>Info</td>
+                <td><%= equipment.percent_propane %></td>
+                <td>$<%= number_with_precision(equipment.savings, :precision => 3, :significant => true, :delimiter => ",") %></td>
+                <td><%= number_with_precision(equipment.simple_payback, :precision => 2, :significant => true, :delimiter => ",") %> years</td>
               <% end %>
             <% end %>
 
-            <td><%= link_to 'Edit', [equipment.opportunity, equipment], :class => 'btn btn-mini' %></td>
-            <td><%= link_to 'Destroy', [equipment.opportunity, equipment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
+            <td><%= link_to 'Edit', edit_opportunity_equipment_path(equipment.opportunity, equipment), :class => 'btn btn-mini' %></td>
+            <td><%= link_to 'Delete', [equipment.opportunity, equipment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
           </tr>
         <% end %>
       </tbody>

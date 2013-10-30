@@ -8,10 +8,12 @@ Fleetsolutions::Application.routes.draw do
     resources :comments
   end
 
+
   resources :opportunities do
     resources :fleets
     resources :stations
     resources :equipment
+    patch 'thankyou', :on => :member
     #resources :calculator, controller: 'accounts/calculator'
   end
 

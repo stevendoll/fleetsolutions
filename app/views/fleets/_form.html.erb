@@ -8,6 +8,11 @@
     <%= f.input :name, label: 'Description' %>
     <%= f.input :pays_for_fuel, as: :radio_buttons, collection: [ "Company", "Driver"], selected: "Company" %>
     <%= f.input :pays_for_maintenance, as: :radio_buttons, collection: [ "Company", "Driver"] %>
+      <% if user_signed_in? %>
+        <% if current_user.has_role? :admin %>
+          <%= f.input :conversion_cost %>
+        <% end %>
+      <% end %>
     <%= f.input :percent_propane %>
   </div>
 

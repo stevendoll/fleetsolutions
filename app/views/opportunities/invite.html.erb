@@ -1,0 +1,27 @@
+<% content_for(:title) { "Savings Calculator" } %>
+
+  <div class="hgroup">
+    <h1>Let's get started</h1>
+    <h2>How can we contact you?</h2>
+    <ul class="breadcrumb pull-right">
+      <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
+      <li class="active">Savings Calculator</li>
+    </ul>
+  </div>
+
+<%= simple_form_for(@opportunity) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= @opportunity.name %>
+    <%= f.input :phone %>
+    <%= f.input :email %>
+    
+    </div>
+
+  <div class="form-actions">
+    <%= f.submit "Let's Go!", thankyou_opportunity_path(@opportunity), :class => 'btn btn-primary btn-large' %>
+  </div>
+<% end %>
+
+

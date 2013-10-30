@@ -4,7 +4,6 @@
     <h1>New Vehicle Group</h1>
     <ul class="breadcrumb pull-right">
       <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
-      <li><a href="<%= opportunity_fleets_path(@fleet.opportunity) %>">Fleet</a> <span class="divider">/</span></li>
       <li class="active">New Vehicle Group</li>
     </ul>
   </div>
@@ -23,6 +22,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Back', @fleet.opportunity %>
   </div>
 <% end %>
