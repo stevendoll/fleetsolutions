@@ -1,14 +1,20 @@
 <ul class="nav pull-right">
   <li class="index"><%= link_to "Home", root_path %></li>
   <li class="index"><%= link_to "Savings Calculator", new_opportunity_path %></li>
-  <li class="index"><%= link_to "Services", services_path %></li>
-  <li class="index"><%= link_to "About Us", about_us_path %></li>
-  <li class="index"><%= link_to "Blog", posts_path %></li>
-  <li class="<%= is_active?('contact') %>"><%= link_to "Contact", contact_path %></li>
   <% if user_signed_in? %>
     <% if current_user.has_role? :admin %>
-      <li>
-        <%= link_to 'Opportunities', opportunities_path %>
+      <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Blog<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class="index"><%= link_to "Blog", posts_path %></li>
+          <li class="index"><%= link_to "New Blog Post", new_post_path %></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">More<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class="index"><%= link_to "Services", services_path %></li>
+          <li class="index"><%= link_to "About Us", about_us_path %></li>
+          <li class="<%= is_active?('contact') %>"><%= link_to "Contact", contact_path %></li>
+        </ul>
       </li>
       <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Admin<span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -18,5 +24,10 @@
         </ul>
       </li>
     <% end %>
+  <% else %>
+    <li class="index"><%= link_to "Services", services_path %></li>
+    <li class="index"><%= link_to "About Us", about_us_path %></li>
+    <li class="index"><%= link_to "Blog", posts_path %></li>
+    <li class="<%= is_active?('contact') %>"><%= link_to "Contact", contact_path %></li>
   <% end %>
 </ul>

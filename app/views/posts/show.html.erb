@@ -25,12 +25,18 @@
           <div class="row">
             <figure class="span1"> <img class="img-circle" src="<%= asset_path("1as.jpg") %>" alt=""> </figure>
             <div class="span7">
-              <div class="comment_name"> <%= comment.commenter %> <a class="reply" href="#">Reply</a> </div>
+              <div class="comment_name"> <%= comment.commenter %></div>
               <div class="comment_date"><i class="icon-time"></i> March 1, 2013</div>
               <div class="the_comment">
-                <p><%= comment.body %> <%= link_to 'Delete', [comment.post, comment],
+                <p><%= comment.body %> 
+
+            <% if (current_user && (current_user.has_role? :admin)) %> 
+
+                  <%= link_to 'Delete', [comment.post, comment],
                method: :delete,
                data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></p>
+            <% end %> 
+
               </div>
             </div>
           </div>
@@ -65,8 +71,13 @@
         <ul class="media-list">
           <%= render 'latest' %>
         </li>
-      </ul>
-      <p><%= link_to 'New Post', new_post_path %></p>
+      </ul> 
+      <% if user_signed_in? %>
+        <% if current_user.has_role? :admin %> 
+          <p><%= link_to 'New Post', new_post_path %></p>
+        <% end %> 
+      <% end %> 
+
     </div>
   </div>
 </section>

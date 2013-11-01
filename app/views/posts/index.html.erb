@@ -24,13 +24,23 @@
         <div class="post_content">
           <figure></figure>
           <p><%= post.teaser.html_safe %></p>
-          <%= link_to 'Read More', post, :class => 'btn btn-primary' %> <%= link_to 'Edit', edit_post_path(post) %> <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Read More', post, :class => 'btn btn-primary' %> 
+          <% if user_signed_in? %>
+            <% if current_user.has_role? :admin %> 
+              <%= link_to 'Edit', edit_post_path(post) %> 
+              <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %> 
+          <% end %> 
         </div>
       </article>
       <% end %>
     </div>
     <div id="sidebar" class="span4">
-      <%= link_to 'New Post', new_post_path %>  
+          <% if user_signed_in? %>
+            <% if current_user.has_role? :admin %> 
+              <%= link_to 'New Post', new_post_path %>  
+            <% end %> 
+          <% end %> 
     </div>
   </div>
 </section>
