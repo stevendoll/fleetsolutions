@@ -62,7 +62,7 @@ class FleetsController < ApplicationController
 
     respond_to do |format|
       if @opportunity.update_attributes(params[:opportunity])
-        format.html { redirect_to opportunity_path(@opportunity), notice: 'Vehicle group was added.' }
+        format.html { redirect_to opportunity_path(@opportunity), notice: 'The vehicles have been added to the analysis.' }
         format.json { render action: 'show', status: :created, location: @fleet }
       else
         format.html { render :action => 'new', alert: 'Status: all fields are required.' }

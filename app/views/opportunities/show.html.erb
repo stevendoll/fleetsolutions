@@ -21,7 +21,7 @@
       <h3>Test<strong>Drive</strong> <small>Try it out yourself</small></h3>
       <div class="the_price"><span></span>Unlimited<br /><small>Fuel for 30 days</small></div>
       <div class="the_offerings">
-        <p> <strong>2</strong> Vehicles </p>
+        <p> <strong>1</strong> Vehicle </p>
         <p> <strong>30</strong> Days </p>
         <p> <strong>$1,000</strong> </p>
         <% if @opportunity.proposed_driver_savings > 0 %><p> &nbsp; </p><% end %>
@@ -63,14 +63,16 @@
         <%= simple_form_for @opportunity, :url => thankyou_opportunity_path(@opportunity) , :html => {:class => 'form-horizontal' } do |f| %> 
           <div class="modal-header">
             <a class="close" data-dismiss="modal">&#215;</a>
-            <h3>Request Invitation</h3>
+            <h3>Tell me more</h3>
           </div>
           <div class="modal-body">
             <%= f.error_notification %>
+            <%= f.input :name %>
+            <%= f.input :contact %>
             <%= f.input :email, :placeholder => 'user@example.com' %>
           </div>
           <div class="modal-footer">
-            <%= f.submit "Request Invitation", :class => "btn btn-primary", :id => 'invitation_button' %>
+            <%= f.submit "Let's Talk", :class => "btn btn-primary", :id => 'invitation_button' %>
             <a class="btn" data-dismiss="modal" href="#">Close</a>
           </div>
         <% end %>

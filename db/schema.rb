@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20131014171336) do
     t.string   "name"
     t.text     "description"
     t.string   "opportunity_type"
+    t.string   "contact"
     t.string   "phone"
     t.string   "email"
     t.text     "address_1"

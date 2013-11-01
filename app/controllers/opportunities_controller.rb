@@ -1,5 +1,6 @@
 class OpportunitiesController < ApplicationController
-  before_action :set_opportunity, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, :only => [:index, :destroy]   
+  before_action :set_opportunity, only: [:show, :edit, :update, :destroy, :thankyou]
 
   # GET /opportunities
   # GET /opportunities.json
@@ -41,7 +42,7 @@ class OpportunitiesController < ApplicationController
 
     respond_to do |format|
       if @opportunity.save
-        format.html { redirect_to @opportunity, notice: 'Opportunity was successfully created.' }
+        format.html { redirect_to @opportunity, notice: 'Your opportunity is ready for analysis.' }
         format.json { render action: 'show', status: :created, location: @opportunity }
       else
         format.html { render action: 'new' }
@@ -84,12 +85,21 @@ class OpportunitiesController < ApplicationController
   end
 
   def thankyou
-    @opportunity = Opportunity.find(params[:id])
-    #format.html { render action: 'new', notice: 'We sent you an email with information to get started.' }
-    # authorize! :invite, @user, :message => 'Not authorized as an administrator.'
-    # @user = User.find(params[:id])
-    # @user.send_confirmation_instructions
-    # redirect_to :back, :only_path => true, :notice => "Sent invitation to #{@user.email}."
+    #@opportunity = Opportunity.find(params[:id])
+    @opportunity.update(opportunity_params)
+    UserMailer.opportunity_welcome_email(@opportunity).deliver
+    UserMailer.new_opportunity_email(@opportunity).deliver
+    # respond_to do |format|
+    #   if @opportunity.update(opportunity_params)
+    #     UserMailer.opportunity_welcome_email(@opportunity).deliver
+    #     format.html { render action: 'thankyou', notice: 'We sent you an email.' }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { render action: 'edit' }
+    #     format.json { render json: @opportunity.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
   end
 
   private
@@ -100,6 +110,6 @@ class OpportunitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def opportunity_params
-      params.require(:opportunity).permit(:name, :description, :opportunity_type, :phone, :email, :address_1, :address_2, :city, :state, :zip, :pays_for_fuel, :fueling_location, :propane_royalties, :propane_turnkey_royalties, :propane_price, :propane_cost, :propane_turnkey_cost, :gasoline_price, :annual_management_charge, :conversion_margin)
+      params.require(:opportunity).permit(:name, :description, :opportunity_type, :contact, :phone, :email, :address_1, :address_2, :city, :state, :zip, :pays_for_fuel, :fueling_location, :propane_royalties, :propane_turnkey_royalties, :propane_price, :propane_cost, :propane_turnkey_cost, :gasoline_price, :annual_management_charge, :conversion_margin)
     end
 end

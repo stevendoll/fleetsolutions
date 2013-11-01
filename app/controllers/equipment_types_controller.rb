@@ -1,4 +1,5 @@
 class EquipmentTypesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_equipment_type, only: [:show, :edit, :update, :destroy]
 
   # GET /equipment_types

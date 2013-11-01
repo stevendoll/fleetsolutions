@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+
+      <p>Contact: <%= @opportunity.contact %><br />
+        Company: <%= @opportunity.name %><br />
+        Email: <%= @opportunity.email %><br />
+        Phone: <%= @opportunity.phone %></p>
+
+
+      <h3><strong>Pro Plan:</strong> Maximize your savings</h3>
+
+        <p>$<%= number_with_precision(@opportunity.proposed_royalties + @opportunity.proposed_company_savings, :precision => 3, :significant => true, :delimiter => ",") %> <%= @opportunity.proposed_royalties == 0 ? 'Savings per year!' : @opportunity.proposed_company_savings == 0 ? 'Royalties per year!' : 'Savings and Royalties!' %>
+        </p>
+        <ul>
+          <li> <strong><%= @opportunity.total_vehicles %></strong> Vehicles </li>
+          <li> <strong>1</strong> Fueling Station </li>
+          <% if @opportunity.proposed_driver_savings > 0 %><li> <strong>$<%= number_with_precision(@opportunity.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></strong> Driver savings per year </li><% end %>
+          <li> <strong>$<%= number_with_precision(@opportunity.conversion_charges, :precision => 3, :significant => true, :delimiter => ",") %></strong> Conversion costs</li>
+        </ul>
+
+      <h3><strong>Turn Key:</strong> No upfront cost! Our most popular plan.</h3>
+
+        <p>$<%= number_with_precision(@opportunity.proposed_turnkey_royalties + @opportunity.proposed_company_turnkey_savings, :precision => 3, :significant => true, :delimiter => ",") %> <%= @opportunity.proposed_royalties == 0 ? 'Savings per year!' : @opportunity.proposed_company_savings == 0 ? 'Royalties per year!' : 'Savings and Royalties!' %>
+        </p>
+      <ul>
+        <li> <strong><%= @opportunity.total_vehicles %></strong> Vehicles </li>
+        <li> <strong>1</strong> Fueling Station </li>
+        <% if @opportunity.proposed_driver_savings > 0 %><li> <strong>$<%= number_with_precision(@opportunity.proposed_driver_savings, :precision => 3, :significant => true, :delimiter => ",") %></strong> Driver savings per year </li><% end %>
+        <li> <strong>Leave the work to us</strong></li>
+      </ul>
+
+    <h3>What we propose</h3>
+
+      <h3><strong>Take a Test Drive: Try it out yourself</h3>
+      <p>Unlimited Fuel for 30 days</p>
+      <ul>
+        <li> <strong>1</strong> Vehicle </li>
+        <li> <strong>30</strong> Days </li>
+        <li> <strong>$1,000</strong> </li>
+      </ul>
+
+
+  </body>
+</html>
