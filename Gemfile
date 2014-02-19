@@ -29,6 +29,7 @@ gem 'therubyracer', :platform=>:ruby
 gem "font-awesome-rails"
 gem 'attribute_normalizer'
 gem 'bootstrap-datepicker-rails' #datepicker
+gem 'unicorn'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
