@@ -32,16 +32,17 @@
         </div>
       </div>
     </div>
-    <div id="social_media_wrapper"> <a href="http://linkedin.com/in/stevendoll"><i class="icon icon-linkedin"></i></a> <a href="http://twitter.com/stevendoll"><i class="icon icon-twitter"></i></a> <a href="mailto:steven@clearskies.co"><i class="icon icon-google-plus"></i></a> </div>
+    <div id="social_media_wrapper"> <a href="http://linkedin.com/in/stevendoll"><i class="fa fa-linkedin"></i></a> <a href="http://twitter.com/stevendoll"><i class="fa fa-twitter"></i></a> <a href="mailto:steven@clearskies.co"><i class="fa fa-google-plus"></i></a>
+     </div>
     <div id="sign">
       <% if user_signed_in? %>
         <%= link_to edit_user_registration_path do %>
-          <i class="icon icon-user"></i>Account
+          <i class="fa fa-user"></i>Account
         <% end %>&nbsp;&nbsp;
         <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
       <% else %>
         <%= link_to new_user_registration_path do %>
-          <i class="icon icon-user"></i>Sign up
+          <i class="fa fa-user"></i>Sign up
         <% end %>&nbsp;&nbsp;
         <%= link_to 'Login', new_user_session_path %>
       <% end %>
@@ -80,7 +81,7 @@
     <section id="copyright">
       <div class="container">
         <div class="row">
-          <div class="span6"> Copyright &copy;2013 all rights reserved </div>
+          <div class="span6"> Copyright &copy;2014 all rights reserved </div>
           <div class="span6 text-right">
             Website by <a href="http://kichocheo.com">Kichocheo</a> with Ruby on Rails
           </div>

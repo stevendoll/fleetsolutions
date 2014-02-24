@@ -13,7 +13,7 @@ gem 'wicked'
 # gem 'jquery-rails', '~> 2.0'
 # gem 'turbolinks'
 # gem 'jbuilder', '~> 1.2'
-# gem 'twitter-bootstrap-rails', '2.2.6'
+gem 'twitter-bootstrap-rails' #, '2.2.6'
 gem 'cancan'
 gem 'devise'
 gem 'devise_invitable'
@@ -22,8 +22,7 @@ gem 'pg'
 gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'thin'
-gem 'twitter-bootstrap-rails'
-gem 'bootstrap-datepicker-rails' #datepicker
+gem 'flexslider'
 gem 'rails_strap', path: 'vendor/rails_strap-1.0.3'
 gem 'therubyracer', :platform=>:ruby
 gem "font-awesome-rails"
