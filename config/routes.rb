@@ -31,6 +31,7 @@ Fleetsolutions::Application.routes.draw do
   get "/contact" => "home#contact"
   get "/elements" => "home#elements"
   get "/services" => "home#services"
+  get "/media" => "home#media"
   get "/register" => "home#register"
   
   get "/calculator" => "calculator#new"
