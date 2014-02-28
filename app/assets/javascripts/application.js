@@ -30,6 +30,8 @@ $(document).ready(function () {
     });
 });
 
+// this fixes a twitter bootstrap bug in menu for ios and android
+// http://alittlecode.com/fix-twitter-bootstraps-dropdown-menus-in-touch-screens/
 $('.dropdown-toggle').click(function(e) {
   e.preventDefault();
   setTimeout($.proxy(function() {
