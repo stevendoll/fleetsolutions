@@ -49,6 +49,7 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'newrelic_rpm'
+  gem 'heroku-deflater'
 end
 group :assets do
   #gem 'therubyracer', :platform=>:ruby

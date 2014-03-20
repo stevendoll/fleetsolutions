@@ -14,6 +14,7 @@ Fleetsolutions::Application.configure do
   config.action_controller.perform_caching = false
 
   config.serve_static_assets = true
+  config.static_cache_control = "public, max-age=2419200"
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
